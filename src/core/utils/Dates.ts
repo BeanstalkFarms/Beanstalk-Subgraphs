@@ -16,8 +16,3 @@ export function hourFromTimestamp(timestamp: BigInt): i32 {
   let day_ts = timestamp.toI32() - (timestamp.toI32() % 3600);
   return day_ts / 3600;
 }
-
-export function testChange(timestamp: BigInt): i32 {
-  let day_ts = timestamp.toI32() - (timestamp.toI32() % 3600);
-  return day_ts / 3600;
-}
