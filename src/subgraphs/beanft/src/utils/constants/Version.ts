@@ -1,8 +1,8 @@
 import { Address, BigInt, ethereum } from "@graphprotocol/graph-ts";
 import { Version } from "../../../generated/schema";
-import { BEANSTALK } from "../../../../subgraph-core/constants/raw/BeanstalkEthConstants";
-import { VersionDto } from "../../../../subgraph-core/constants/RuntimeConstants";
-import { toAddress } from "../../../../subgraph-core/utils/Bytes";
+import { BEANSTALK } from "../../../../../core/constants/raw/BeanstalkEthConstants";
+import { VersionDto } from "../../../../../core/constants/RuntimeConstants";
+import { toAddress } from "../../../../../core/utils/Bytes";
 
 export function handleInitVersion(block: ethereum.Block): void {
   const versionEntity = new Version("subgraph");
