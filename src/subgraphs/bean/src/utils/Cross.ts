@@ -10,7 +10,12 @@ import { updateBeanValues } from "./Bean";
 import { getProtocolToken } from "../../../../core/constants/RuntimeConstants";
 import { v } from "./constants/Version";
 
-export function checkPoolCross(pool: Address, oldPrice: BigDecimal, newPrice: BigDecimal, block: ethereum.Block): boolean {
+export function checkPoolCross(
+  pool: Address,
+  oldPrice: BigDecimal,
+  newPrice: BigDecimal,
+  block: ethereum.Block
+): boolean {
   let poolInfo = loadOrCreatePool(pool, block.number);
 
   if (oldPrice >= ONE_BD && newPrice < ONE_BD) {
@@ -63,7 +68,12 @@ export function checkPoolCross(pool: Address, oldPrice: BigDecimal, newPrice: Bi
   return false;
 }
 
-export function checkBeanCross(token: Address, oldPrice: BigDecimal, newPrice: BigDecimal, block: ethereum.Block): boolean {
+export function checkBeanCross(
+  token: Address,
+  oldPrice: BigDecimal,
+  newPrice: BigDecimal,
+  block: ethereum.Block
+): boolean {
   let bean = loadBean(token);
 
   if (oldPrice >= ONE_BD && newPrice < ONE_BD) {

@@ -100,7 +100,11 @@ export function calcLiquidityVolume(well: Well, deltaReserves: BigInt[], deltaLp
 }
 
 // Updates all volume statistics associated with this well using the provided values
-function updateVolumeStats(well: Well, deltaTradeVolumeReserves: BigInt[], deltaTransferVolumeReserves: BigInt[]): void {
+function updateVolumeStats(
+  well: Well,
+  deltaTradeVolumeReserves: BigInt[],
+  deltaTransferVolumeReserves: BigInt[]
+): void {
   let tradeVolumeReserves = well.cumulativeTradeVolumeReserves;
   let tradeVolumeReservesUSD = well.cumulativeTradeVolumeReservesUSD;
   let biTradeVolumeReserves = well.cumulativeBiTradeVolumeReserves;
@@ -131,20 +135,32 @@ function updateVolumeStats(well: Well, deltaTradeVolumeReserves: BigInt[], delta
     }
     biTradeVolumeReserves[i] = biTradeVolumeReserves[i].plus(deltaTradeVolumeReserves[i].abs());
     rollingDailyBiTradeVolumeReserves[i] = rollingDailyBiTradeVolumeReserves[i].plus(deltaTradeVolumeReserves[i].abs());
-    rollingWeeklyBiTradeVolumeReserves[i] = rollingWeeklyBiTradeVolumeReserves[i].plus(deltaTradeVolumeReserves[i].abs());
+    rollingWeeklyBiTradeVolumeReserves[i] = rollingWeeklyBiTradeVolumeReserves[i].plus(
+      deltaTradeVolumeReserves[i].abs()
+    );
 
     transferVolumeReserves[i] = transferVolumeReserves[i].plus(deltaTransferVolumeReserves[i].abs());
-    rollingDailyTransferVolumeReserves[i] = rollingDailyTransferVolumeReserves[i].plus(deltaTransferVolumeReserves[i].abs());
-    rollingWeeklyTransferVolumeReserves[i] = rollingWeeklyTransferVolumeReserves[i].plus(deltaTransferVolumeReserves[i].abs());
-    let usdTransferAmount = toDecimal(deltaTransferVolumeReserves[i].abs(), tokenInfo.decimals).times(tokenInfo.lastPriceUSD);
+    rollingDailyTransferVolumeReserves[i] = rollingDailyTransferVolumeReserves[i].plus(
+      deltaTransferVolumeReserves[i].abs()
+    );
+    rollingWeeklyTransferVolumeReserves[i] = rollingWeeklyTransferVolumeReserves[i].plus(
+      deltaTransferVolumeReserves[i].abs()
+    );
+    let usdTransferAmount = toDecimal(deltaTransferVolumeReserves[i].abs(), tokenInfo.decimals).times(
+      tokenInfo.lastPriceUSD
+    );
 
     tradeVolumeReservesUSD[i] = tradeVolumeReservesUSD[i].plus(usdTradeAmount).truncate(2);
     rollingDailyTradeVolumeReservesUSD[i] = rollingDailyTradeVolumeReservesUSD[i].plus(usdTradeAmount).truncate(2);
     rollingWeeklyTradeVolumeReservesUSD[i] = rollingWeeklyTradeVolumeReservesUSD[i].plus(usdTradeAmount).truncate(2);
 
     transferVolumeReservesUSD[i] = transferVolumeReservesUSD[i].plus(usdTransferAmount).truncate(2);
-    rollingDailyTransferVolumeReservesUSD[i] = rollingDailyTransferVolumeReservesUSD[i].plus(usdTransferAmount).truncate(2);
-    rollingWeeklyTransferVolumeReservesUSD[i] = rollingWeeklyTransferVolumeReservesUSD[i].plus(usdTransferAmount).truncate(2);
+    rollingDailyTransferVolumeReservesUSD[i] = rollingDailyTransferVolumeReservesUSD[i]
+      .plus(usdTransferAmount)
+      .truncate(2);
+    rollingWeeklyTransferVolumeReservesUSD[i] = rollingWeeklyTransferVolumeReservesUSD[i]
+      .plus(usdTransferAmount)
+      .truncate(2);
 
     totalTradeUSD = totalTradeUSD.plus(usdTradeAmount).truncate(2);
     totalTransferUSD = totalTransferUSD.plus(usdTransferAmount).truncate(2);

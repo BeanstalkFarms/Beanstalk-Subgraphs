@@ -124,7 +124,10 @@ export function BeanstalkPrice_try_price(blockNumber: BigInt): BeanstalkPriceRes
 
   // changetype is necessary as there are identical responses from different generated contract objects.
   // If the response structure changes in the future, this will need to be revisited.
-  return new BeanstalkPriceResult(changetype<BeanstalkPrice__priceResultPStruct>(beanPrice.value), toAddressArray(bean.pools));
+  return new BeanstalkPriceResult(
+    changetype<BeanstalkPrice__priceResultPStruct>(beanPrice.value),
+    toAddressArray(bean.pools)
+  );
 }
 
 // Extracts the pool price from the larger result

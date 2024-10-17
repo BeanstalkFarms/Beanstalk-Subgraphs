@@ -1,10 +1,17 @@
 import { BigInt, ethereum, log } from "@graphprotocol/graph-ts";
-import { WhitelistTokenSetting, WhitelistTokenHourlySnapshot, WhitelistTokenDailySnapshot } from "../../../generated/schema";
+import {
+  WhitelistTokenSetting,
+  WhitelistTokenHourlySnapshot,
+  WhitelistTokenDailySnapshot
+} from "../../../generated/schema";
 import { getCurrentSeason } from "../Beanstalk";
 import { dayFromTimestamp, hourFromTimestamp } from "../../../../../core/utils/Dates";
 import { ZERO_BI } from "../../../../../core/utils/Decimals";
 
-export function takeWhitelistTokenSettingSnapshots(whitelistTokenSetting: WhitelistTokenSetting, block: ethereum.Block): void {
+export function takeWhitelistTokenSettingSnapshots(
+  whitelistTokenSetting: WhitelistTokenSetting,
+  block: ethereum.Block
+): void {
   const currentSeason = getCurrentSeason();
 
   const hour = BigInt.fromI32(hourFromTimestamp(block.timestamp));
@@ -54,7 +61,9 @@ export function takeWhitelistTokenSettingSnapshots(whitelistTokenSetting: Whitel
     }
     if (hourly.optimalPercentDepositedBdv !== null) {
       if (baseHourly.optimalPercentDepositedBdv !== null) {
-        hourly.deltaOptimalPercentDepositedBdv = hourly.optimalPercentDepositedBdv!.minus(baseHourly.optimalPercentDepositedBdv!);
+        hourly.deltaOptimalPercentDepositedBdv = hourly.optimalPercentDepositedBdv!.minus(
+          baseHourly.optimalPercentDepositedBdv!
+        );
       } else {
         hourly.deltaOptimalPercentDepositedBdv = hourly.optimalPercentDepositedBdv;
       }
@@ -113,7 +122,9 @@ export function takeWhitelistTokenSettingSnapshots(whitelistTokenSetting: Whitel
     }
     if (daily.optimalPercentDepositedBdv !== null) {
       if (baseDaily.optimalPercentDepositedBdv !== null) {
-        daily.deltaOptimalPercentDepositedBdv = daily.optimalPercentDepositedBdv!.minus(baseDaily.optimalPercentDepositedBdv!);
+        daily.deltaOptimalPercentDepositedBdv = daily.optimalPercentDepositedBdv!.minus(
+          baseDaily.optimalPercentDepositedBdv!
+        );
       } else {
         daily.deltaOptimalPercentDepositedBdv = daily.optimalPercentDepositedBdv;
       }
@@ -150,10 +161,15 @@ export function takeWhitelistTokenSettingSnapshots(whitelistTokenSetting: Whitel
   whitelistTokenSetting.lastDailySnapshotDay = day;
 }
 
-export function clearWhitelistTokenSettingDeltas(whitelistTokenSetting: WhitelistTokenSetting, block: ethereum.Block): void {
+export function clearWhitelistTokenSettingDeltas(
+  whitelistTokenSetting: WhitelistTokenSetting,
+  block: ethereum.Block
+): void {
   const currentSeason = getCurrentSeason();
   const day = BigInt.fromI32(dayFromTimestamp(block.timestamp));
-  const hourly = WhitelistTokenHourlySnapshot.load(whitelistTokenSetting.id.toHexString() + "-" + currentSeason.toString());
+  const hourly = WhitelistTokenHourlySnapshot.load(
+    whitelistTokenSetting.id.toHexString() + "-" + currentSeason.toString()
+  );
   const daily = WhitelistTokenDailySnapshot.load(whitelistTokenSetting.id.toHexString() + "-" + day.toString());
   if (hourly != null) {
     hourly.deltaStalkEarnedPerSeason = ZERO_BI;

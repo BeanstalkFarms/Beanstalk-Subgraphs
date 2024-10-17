@@ -52,7 +52,11 @@ export function updateWellTokenUSDPrices(wellAddress: Address, blockNumber: BigI
     }
     let tokenAddress = toAddress(well.tokens[i]);
     if (well.reserves[i].gt(ZERO_BI)) {
-      updateTokenUSD(tokenAddress, blockNumber, currentBeans.div(toDecimal(well.reserves[i], getTokenDecimals(tokenAddress))));
+      updateTokenUSD(
+        tokenAddress,
+        blockNumber,
+        currentBeans.div(toDecimal(well.reserves[i], getTokenDecimals(tokenAddress)))
+      );
     }
   }
 
@@ -89,7 +93,10 @@ export function getTokenPrices(well: Well): BigInt[] {
     }
   } else {
     // In practice only the original constant product well does not support calcRate
-    rates = calcRates(well.reserves, [getTokenDecimals(toAddress(well.tokens[0])), getTokenDecimals(toAddress(well.tokens[1]))]);
+    rates = calcRates(well.reserves, [
+      getTokenDecimals(toAddress(well.tokens[0])),
+      getTokenDecimals(toAddress(well.tokens[1]))
+    ]);
   }
   return rates;
 }

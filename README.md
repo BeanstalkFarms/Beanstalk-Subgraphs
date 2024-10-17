@@ -1,6 +1,6 @@
 <img src="https://github.com/BeanstalkFarms/Beanstalk-Brand-Assets/blob/main/BEAN/bean-128x128.png" alt="Beanstalk logo" align="right" width="120" />
 
-## Beanstalk Subgraph
+## Beanstalk Subgraphs
 
 [![Discord][discord-badge]][discord-url]
 
@@ -11,16 +11,17 @@
 
 ### Subgraphs
 
-- [Testing Subgraph](https://graph.bean.money/beanstalk-testing)
-  - The bleeding edge. Used for debugging and rapid iteration.
-- [Dev Subgraph](https://graph.bean.money/beanstalk-dev)
-  - Used for testing fixes or improvements made in the testing subgraph before going live.
-- [Canonical Subgraph](https://graph.bean.money/beanstalk)
-  - Stable deployment and current source of truth for UI and other production processes.
+Endpoint: https://graph.bean.money/{name}
+
+- [Beanstalk](https://graph.bean.money/beanstalk)
+- [Bean](https://graph.bean.money/bean)
+- [Basin](https://graph.bean.money/basin)
+
+Subgraph names are according to the projects in the `src/subgraphs` folder. Dev subgraphs are appended with `-dev` and testing subgraphs with `-testing`.
+
+To retrieve data from when Beanstalk was on Ethereum, append `_eth` to the name.
 
 All subgraphs are hosted on a mix of Alchemy and Graph Network, with responses served from a proxy api managed by Beanstalk Farms. Read more about the advantages of the proxy here: https://github.com/BeanstalkFarms/Subgraph-Proxy.
-
-Looking to analyze data from when Beanstalk was on Ethereum? Append "\_eth" to each of the above links.
 
 ### Testing
 

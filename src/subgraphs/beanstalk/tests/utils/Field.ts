@@ -49,7 +49,12 @@ export function assertFarmerHasPlot(
 }
 
 // Field can be either a farmer or beanstalk address
-export function assertFieldHas(field: string, unharvestable: BigInt, harvestable: BigInt, debug: boolean = false): void {
+export function assertFieldHas(
+  field: string,
+  unharvestable: BigInt,
+  harvestable: BigInt,
+  debug: boolean = false
+): void {
   if (debug) {
     log.debug("about to assert field {}", [field]);
   }

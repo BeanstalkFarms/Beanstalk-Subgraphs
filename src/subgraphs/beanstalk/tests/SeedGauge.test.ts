@@ -81,7 +81,12 @@ describe("Seed Gauge", () => {
       handleBeanToMaxLpGpPerBdvRatioChange(
         createBeanToMaxLpGpPerBdvRatioChangeEvent(BigInt.fromU32(20001), BigInt.fromU32(10), adjustment1)
       );
-      assert.fieldEquals("Silo", BEANSTALK.toHexString(), "beanToMaxLpGpPerBdvRatio", initialRatio.plus(adjustment1).toString());
+      assert.fieldEquals(
+        "Silo",
+        BEANSTALK.toHexString(),
+        "beanToMaxLpGpPerBdvRatio",
+        initialRatio.plus(adjustment1).toString()
+      );
       handleBeanToMaxLpGpPerBdvRatioChange(
         createBeanToMaxLpGpPerBdvRatioChangeEvent(BigInt.fromU32(20002), BigInt.fromU32(10), adjustment2)
       );
@@ -94,7 +99,9 @@ describe("Seed Gauge", () => {
     });
 
     test("event: GaugePointChange", () => {
-      handleGaugePointChange(createGaugePointChangeEvent(BigInt.fromU32(20000), BEAN_ERC20.toHexString(), BigInt.fromU32(12345)));
+      handleGaugePointChange(
+        createGaugePointChangeEvent(BigInt.fromU32(20000), BEAN_ERC20.toHexString(), BigInt.fromU32(12345))
+      );
       assert.fieldEquals("WhitelistTokenSetting", BEAN_ERC20.toHexString(), "gaugePoints", "12345");
     });
 
@@ -125,7 +132,9 @@ describe("Seed Gauge", () => {
       assert.fieldEquals("Germinating", ANVIL_ADDR_1 + "-ODD", "stalk", times2.toString());
       assert.fieldEquals("Silo", ANVIL_ADDR_1, "germinatingStalk", times2.toString());
 
-      handleFarmerGerminatingStalkBalanceChanged(createFarmerGerminatingStalkBalanceChangedEvent(ANVIL_ADDR_1, times2.neg(), 0));
+      handleFarmerGerminatingStalkBalanceChanged(
+        createFarmerGerminatingStalkBalanceChangedEvent(ANVIL_ADDR_1, times2.neg(), 0)
+      );
       assert.notInStore("Germinating", ANVIL_ADDR_1 + "-ODD");
       assert.fieldEquals("Silo", ANVIL_ADDR_1, "germinatingStalk", "0");
 
@@ -163,13 +172,20 @@ describe("Seed Gauge", () => {
 
     test("event: TotalGerminatingStalkChanged", () => {
       const initialGerminating = BigInt.fromI32(123456789);
-      handleTotalGerminatingStalkChanged(createTotalGerminatingStalkChangedEvent(BigInt.fromU32(20000), initialGerminating));
+      handleTotalGerminatingStalkChanged(
+        createTotalGerminatingStalkChangedEvent(BigInt.fromU32(20000), initialGerminating)
+      );
       assert.fieldEquals("Silo", BEANSTALK.toHexString(), "germinatingStalk", initialGerminating.toString());
       assert.fieldEquals("Germinating", BEANSTALK.toHexString() + "-EVEN", "stalk", initialGerminating.toString());
 
       const adjustment = BigInt.fromI32(-8000000);
       handleTotalGerminatingStalkChanged(createTotalGerminatingStalkChangedEvent(BigInt.fromU32(20001), adjustment));
-      assert.fieldEquals("Silo", BEANSTALK.toHexString(), "germinatingStalk", initialGerminating.plus(adjustment).toString());
+      assert.fieldEquals(
+        "Silo",
+        BEANSTALK.toHexString(),
+        "germinatingStalk",
+        initialGerminating.plus(adjustment).toString()
+      );
       assert.fieldEquals("Germinating", BEANSTALK.toHexString() + "-ODD", "stalk", adjustment.toString());
     });
 
@@ -210,7 +226,12 @@ describe("Seed Gauge", () => {
         BigInt.fromU64(10000000000).toString()
       );
       assert.fieldEquals("WhitelistTokenSetting", BEAN_ERC20.toHexString(), "isGaugeEnabled", "true");
-      assert.fieldEquals("WhitelistTokenSetting", BEAN_ERC20.toHexString(), "gaugePoints", BigInt.fromU32(12345).toString());
+      assert.fieldEquals(
+        "WhitelistTokenSetting",
+        BEAN_ERC20.toHexString(),
+        "gaugePoints",
+        BigInt.fromU32(12345).toString()
+      );
       assert.fieldEquals(
         "WhitelistTokenSetting",
         BEAN_ERC20.toHexString(),

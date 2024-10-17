@@ -205,7 +205,9 @@ export function handleHarvest(event: Harvest): void {
   field.save();
 
   // Save the low level details for the event.
-  let harvest = new HarvestEntity("harvest-" + event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString());
+  let harvest = new HarvestEntity(
+    "harvest-" + event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString()
+  );
   harvest.hash = event.transaction.hash.toHexString();
   harvest.logIndex = event.transactionLogIndex.toI32();
   harvest.protocol = event.address.toHexString();

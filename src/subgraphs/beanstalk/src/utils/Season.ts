@@ -33,7 +33,8 @@ export function sunrise(protocol: Address, season: BigInt, block: ethereum.Block
   if (field.unmigratedL1Pods !== null) {
     unharvestablePods = unharvestablePods.plus(field.unmigratedL1Pods!);
   }
-  field.podRate = seasonEntity.beans == ZERO_BI ? ZERO_BD : toDecimal(unharvestablePods).div(toDecimal(seasonEntity.beans));
+  field.podRate =
+    seasonEntity.beans == ZERO_BI ? ZERO_BD : toDecimal(unharvestablePods).div(toDecimal(seasonEntity.beans));
 
   takeFieldSnapshots(field, block);
   field.save();
@@ -82,7 +83,14 @@ export function siloReceipt(amount: BigInt, block: ethereum.Block): void {
   silo.save();
 
   // Add SiloAsset deposit immediately at the protocol level. Will be removed upon plant
-  updateDepositInSiloAsset(v().protocolAddress, v().protocolAddress, getProtocolToken(v(), block.number), amount, amount, block);
+  updateDepositInSiloAsset(
+    v().protocolAddress,
+    v().protocolAddress,
+    getProtocolToken(v(), block.number),
+    amount,
+    amount,
+    block
+  );
 }
 
 function setTokenBdv(token: Address, protocol: Address, whitelistTokenSetting: WhitelistTokenSetting): void {

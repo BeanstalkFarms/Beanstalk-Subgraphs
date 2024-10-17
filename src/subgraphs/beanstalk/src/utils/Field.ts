@@ -43,7 +43,17 @@ class TemperatureChangedParams {
 export function sow(params: SowParams): void {
   const protocol = params.event.address;
   let sownBeans = params.beans;
-  updateFieldTotals(protocol, params.account, ZERO_BI, sownBeans, params.pods, ZERO_BI, ZERO_BI, ZERO_BI, params.event.block);
+  updateFieldTotals(
+    protocol,
+    params.account,
+    ZERO_BI,
+    sownBeans,
+    params.pods,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    params.event.block
+  );
 
   let field = loadField(protocol);
   loadFarmer(params.account);
@@ -84,7 +94,17 @@ export function harvest(params: HarvestParams): void {
 
     if (harvestablePods >= plot.pods) {
       // Plot fully harvests
-      updateFieldTotals(protocol, params.account, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, plot.pods, params.event.block);
+      updateFieldTotals(
+        protocol,
+        params.account,
+        ZERO_BI,
+        ZERO_BI,
+        ZERO_BI,
+        ZERO_BI,
+        ZERO_BI,
+        plot.pods,
+        params.event.block
+      );
 
       plot.harvestedPods = plot.pods;
       plot.fullyHarvested = true;
@@ -384,7 +404,17 @@ export function updateFieldTotals(
   recurs: boolean = true
 ): void {
   if (recurs && account != protocol) {
-    updateFieldTotals(protocol, protocol, soil, sownBeans, sownPods, transferredPods, harvestablePods, harvestedPods, block);
+    updateFieldTotals(
+      protocol,
+      protocol,
+      soil,
+      sownBeans,
+      sownPods,
+      transferredPods,
+      harvestablePods,
+      harvestedPods,
+      block
+    );
   }
   let field = loadField(account);
 
@@ -430,7 +460,17 @@ export function updateHarvestablePlots(protocol: Address, harvestableIndex: BigI
     let deltaHarvestablePods =
       oldHarvestablePods == ZERO_BI ? plot.harvestablePods : plot.harvestablePods.minus(oldHarvestablePods);
 
-    updateFieldTotals(protocol, toAddress(plot.farmer), ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, deltaHarvestablePods, ZERO_BI, block);
+    updateFieldTotals(
+      protocol,
+      toAddress(plot.farmer),
+      ZERO_BI,
+      ZERO_BI,
+      ZERO_BI,
+      ZERO_BI,
+      deltaHarvestablePods,
+      ZERO_BI,
+      block
+    );
   }
 }
 

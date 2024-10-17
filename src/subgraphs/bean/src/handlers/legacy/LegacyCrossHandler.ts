@@ -6,7 +6,10 @@ import { PEG_CROSS_BLOCKS, PEG_CROSS_BLOCKS_LAST } from "../../../cache-builder/
 export function handleBlock_v1(block: ethereum.Block): void {
   // Avoid checking for peg crosses on blocks which are already known to not have any cross.
   // The underlying methods do not write any data unless there is a cross
-  if (block.number.toU32() > PEG_CROSS_BLOCKS_LAST || u32_binarySearchIndex(PEG_CROSS_BLOCKS, block.number.toU32()) != -1) {
+  if (
+    block.number.toU32() > PEG_CROSS_BLOCKS_LAST ||
+    u32_binarySearchIndex(PEG_CROSS_BLOCKS, block.number.toU32()) != -1
+  ) {
     univ2_checkPegCrossEth(block);
   }
 }

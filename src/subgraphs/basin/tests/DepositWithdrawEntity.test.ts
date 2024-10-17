@@ -12,7 +12,13 @@ import {
   WITHDRAW_ENTITY_TYPE
 } from "./helpers/Constants";
 import { boreDefaultWell } from "./helpers/Aquifer";
-import { mockAddLiquidity, mockRemoveLiquidity, mockRemoveLiquidityOneBean, loadWithdraw, mockSync } from "./helpers/Liquidity";
+import {
+  mockAddLiquidity,
+  mockRemoveLiquidity,
+  mockRemoveLiquidityOneBean,
+  loadWithdraw,
+  mockSync
+} from "./helpers/Liquidity";
 import { loadDeposit } from "./helpers/Liquidity";
 import { BigInt } from "@graphprotocol/graph-ts";
 import { initL1Version } from "./entity-mocking/MockVersion";

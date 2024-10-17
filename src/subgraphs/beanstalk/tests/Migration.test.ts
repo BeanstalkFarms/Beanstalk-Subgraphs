@@ -68,7 +68,12 @@ describe("Beanstalk 3 Migration", () => {
     });
 
     test("Field entity initialization", () => {
-      assert.fieldEquals("Field", BEANSTALK.toHexString(), "numberOfSowers", FIELD_INITIAL_VALUES.numberOfSowers.toString());
+      assert.fieldEquals(
+        "Field",
+        BEANSTALK.toHexString(),
+        "numberOfSowers",
+        FIELD_INITIAL_VALUES.numberOfSowers.toString()
+      );
       assert.fieldEquals("Field", BEANSTALK.toHexString(), "sownBeans", FIELD_INITIAL_VALUES.sownBeans.toString());
       assert.fieldEquals(
         "FieldHourlySnapshot",
@@ -76,11 +81,21 @@ describe("Beanstalk 3 Migration", () => {
         "sownBeans",
         FIELD_INITIAL_VALUES.sownBeans.toString()
       );
-      assert.fieldEquals("FieldHourlySnapshot", BEANSTALK.toHexString() + "-" + SEASON_INITIAL.toString(), "deltaSownBeans", "0");
+      assert.fieldEquals(
+        "FieldHourlySnapshot",
+        BEANSTALK.toHexString() + "-" + SEASON_INITIAL.toString(),
+        "deltaSownBeans",
+        "0"
+      );
     });
 
     test("PodMarketplace entity initialization", () => {
-      assert.fieldEquals("PodMarketplace", "0", "filledListedPods", POD_MARKETPLACE_INITIAL_VALUES.filledListedPods.toString());
+      assert.fieldEquals(
+        "PodMarketplace",
+        "0",
+        "filledListedPods",
+        POD_MARKETPLACE_INITIAL_VALUES.filledListedPods.toString()
+      );
       assert.fieldEquals("PodMarketplace", "0", "beanVolume", POD_MARKETPLACE_INITIAL_VALUES.beanVolume.toString());
       assert.fieldEquals(
         "PodMarketplaceHourlySnapshot",
@@ -213,7 +228,12 @@ describe("Beanstalk 3 Migration", () => {
     assert.fieldEquals("FertilizerToken", fertId.toString(), "humidity", "500");
     assert.fieldEquals("FertilizerToken", fertId.toString(), "season", "6074");
     assert.fieldEquals("FertilizerToken", fertId.toString(), "startBpf", "0");
-    assert.fieldEquals("FertilizerBalance", fertId.toString() + "-" + account.toHexString(), "amount", amount.toString());
+    assert.fieldEquals(
+      "FertilizerBalance",
+      fertId.toString() + "-" + account.toHexString(),
+      "amount",
+      amount.toString()
+    );
 
     const fertId2 = BigInt.fromU32(2373025);
     const amount2 = BigInt.fromU32(700);
@@ -223,6 +243,11 @@ describe("Beanstalk 3 Migration", () => {
     assert.fieldEquals("FertilizerToken", fertId2.toString(), "humidity", "124");
     assert.fieldEquals("FertilizerToken", fertId2.toString(), "season", "6326");
     assert.fieldEquals("FertilizerToken", fertId2.toString(), "startBpf", "133025");
-    assert.fieldEquals("FertilizerBalance", fertId2.toString() + "-" + account.toHexString(), "amount", amount2.toString());
+    assert.fieldEquals(
+      "FertilizerBalance",
+      fertId2.toString() + "-" + account.toHexString(),
+      "amount",
+      amount2.toString()
+    );
   });
 });

@@ -66,7 +66,12 @@ export function createMigratedPlotEvent(account: Address, plotIndex: BigInt, pod
   return event as MigratedPlot;
 }
 
-export function createL1PlotsMigratedEvent(owner: Address, receiver: Address, index: BigInt[], pods: BigInt[]): L1PlotsMigrated {
+export function createL1PlotsMigratedEvent(
+  owner: Address,
+  receiver: Address,
+  index: BigInt[],
+  pods: BigInt[]
+): L1PlotsMigrated {
   let event = changetype<L1PlotsMigrated>(mockContractEvent(BEANSTALK_ARB));
   event.parameters = new Array();
 
@@ -151,7 +156,11 @@ export function createMigratedPodOrderEvent(
   return event as MigratedPodOrder;
 }
 
-export function createInternalBalanceMigratedEvent(account: Address, token: Address, delta: BigInt): InternalBalanceMigrated {
+export function createInternalBalanceMigratedEvent(
+  account: Address,
+  token: Address,
+  delta: BigInt
+): InternalBalanceMigrated {
   let event = changetype<InternalBalanceMigrated>(mockContractEvent(BEANSTALK_ARB));
   event.parameters = new Array();
 

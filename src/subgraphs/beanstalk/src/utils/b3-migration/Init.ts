@@ -18,7 +18,11 @@ import { loadPodMarketplace } from "../../entities/PodMarketplace";
 import { clearMarketDeltas, takeMarketSnapshots } from "../../entities/snapshots/Marketplace";
 import { setWhitelistTokenSettings } from "../Silo";
 import { addToSiloWhitelist, loadSilo, loadUnripeToken } from "../../entities/Silo";
-import { getProtocolFertilizer, getUnripeBeanAddr, getUnripeLpAddr } from "../../../../../core/constants/RuntimeConstants";
+import {
+  getProtocolFertilizer,
+  getUnripeBeanAddr,
+  getUnripeLpAddr
+} from "../../../../../core/constants/RuntimeConstants";
 import { clearUnripeTokenDeltas, takeUnripeTokenSnapshots } from "../../entities/snapshots/UnripeToken";
 import { loadBeanstalk, loadSeason } from "../../entities/Beanstalk";
 import { clearSiloDeltas } from "../../entities/snapshots/Silo";

@@ -1,6 +1,14 @@
 /// <reference path="../../../node_modules/assemblyscript/dist/assemblyscript.d.ts" />
 
-import { beforeEach, afterEach, assert, clearStore, describe, test, createMockedFunction } from "matchstick-as/assembly/index";
+import {
+  beforeEach,
+  afterEach,
+  assert,
+  clearStore,
+  describe,
+  test,
+  createMockedFunction
+} from "matchstick-as/assembly/index";
 import { log } from "matchstick-as/assembly/log";
 import { BigInt, Bytes } from "@graphprotocol/graph-ts";
 
@@ -147,7 +155,11 @@ describe("Field: Plot Transfer", () => {
       const transferredAmount = initialPlots[0].pods.div(BigInt.fromI32(3));
       transferPlot(account, account2, transferredIndex, transferredAmount);
 
-      assertFarmerHasPlot(account, transferredIndex.plus(transferredAmount), initialPlots[0].pods.minus(transferredAmount));
+      assertFarmerHasPlot(
+        account,
+        transferredIndex.plus(transferredAmount),
+        initialPlots[0].pods.minus(transferredAmount)
+      );
       assertFarmerHasPlot(account2, transferredIndex, transferredAmount);
       assertFieldHas(account, initialPlots[0].pods.minus(transferredAmount).plus(initialPlots[1].pods), ZERO_BI);
       assertFieldHas(account2, transferredAmount, ZERO_BI);
@@ -220,7 +232,12 @@ describe("Field: Plot Transfer", () => {
       assert.entityCount("Plot", 3);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "beansPerPod", filledBeansPerPod);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "source", "MARKET");
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingAmount).toString(), "beansPerPod", initialBeansPerPod);
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(listingAmount).toString(),
+        "beansPerPod",
+        initialBeansPerPod
+      );
       assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingAmount).toString(), "source", "SOW");
     });
 
@@ -236,7 +253,12 @@ describe("Field: Plot Transfer", () => {
       assert.entityCount("Plot", 3);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "beansPerPod", filledBeansPerPod);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "source", "MARKET");
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillAmount).toString(), "beansPerPod", initialBeansPerPod);
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(fillAmount).toString(),
+        "beansPerPod",
+        initialBeansPerPod
+      );
       assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillAmount).toString(), "source", "SOW");
     });
   });
@@ -321,7 +343,12 @@ describe("Field: Plot Transfer", () => {
       assert.entityCount("Plot", 3);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "beansPerPod", initialBeansPerPod);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "source", "SOW");
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingStart).toString(), "beansPerPod", filledBeansPerPod);
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(listingStart).toString(),
+        "beansPerPod",
+        filledBeansPerPod
+      );
       assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingStart).toString(), "source", "MARKET");
     });
 
@@ -338,7 +365,12 @@ describe("Field: Plot Transfer", () => {
       assert.entityCount("Plot", 3);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "beansPerPod", initialBeansPerPod);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "source", "SOW");
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillStart).toString(), "beansPerPod", filledBeansPerPod);
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(fillStart).toString(),
+        "beansPerPod",
+        filledBeansPerPod
+      );
       assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillStart).toString(), "source", "MARKET");
     });
   });
@@ -367,7 +399,12 @@ describe("Field: Plot Transfer", () => {
       transferPlot(account, account2, transferredIndex, transferredAmount);
 
       assertFarmerHasPlot(account, initialPlots[0].plotStart, transferredAmount, transferredAmount);
-      assertFarmerHasPlot(account, initialPlots[0].plotEnd.minus(transferredAmount), transferredAmount, transferredAmount);
+      assertFarmerHasPlot(
+        account,
+        initialPlots[0].plotEnd.minus(transferredAmount),
+        transferredAmount,
+        transferredAmount
+      );
       assertFarmerHasPlot(account2, transferredIndex, transferredAmount, transferredAmount);
       assertFieldHas(account, initialPlots[1].pods, initialPlots[0].pods.minus(transferredAmount));
       assertFieldHas(account2, ZERO_BI, transferredAmount);
@@ -384,7 +421,12 @@ describe("Field: Plot Transfer", () => {
       transferPlot(account, account2, transferredIndex, transferredAmount);
 
       const transferredHarvestable = harvestableAmount.minus(transferredAmount);
-      assertFarmerHasPlot(account, initialPlots[0].plotStart, transferredAmount, harvestableAmount.minus(transferredHarvestable));
+      assertFarmerHasPlot(
+        account,
+        initialPlots[0].plotStart,
+        transferredAmount,
+        harvestableAmount.minus(transferredHarvestable)
+      );
       assertFarmerHasPlot(account, initialPlots[0].plotEnd.minus(transferredAmount), transferredAmount, ZERO_BI);
       assertFarmerHasPlot(account2, transferredIndex, transferredAmount, transferredHarvestable);
       assertFieldHas(
@@ -421,7 +463,12 @@ describe("Field: Plot Transfer", () => {
       assert.entityCount("Plot", 4);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "beansPerPod", initialBeansPerPod);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "source", "SOW");
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingStart).toString(), "beansPerPod", filledBeansPerPod);
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(listingStart).toString(),
+        "beansPerPod",
+        filledBeansPerPod
+      );
       assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingStart).toString(), "source", "MARKET");
       assert.fieldEquals(
         "Plot",
@@ -429,7 +476,12 @@ describe("Field: Plot Transfer", () => {
         "beansPerPod",
         initialBeansPerPod
       );
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(listingStart).plus(listingAmount).toString(), "source", "SOW");
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(listingStart).plus(listingAmount).toString(),
+        "source",
+        "SOW"
+      );
     });
 
     test("M: Marketplace Order", () => {
@@ -445,7 +497,12 @@ describe("Field: Plot Transfer", () => {
       assert.entityCount("Plot", 4);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "beansPerPod", initialBeansPerPod);
       assert.fieldEquals("Plot", initialPlots[0].plotStart.toString(), "source", "SOW");
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillStart).toString(), "beansPerPod", filledBeansPerPod);
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(fillStart).toString(),
+        "beansPerPod",
+        filledBeansPerPod
+      );
       assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillStart).toString(), "source", "MARKET");
       assert.fieldEquals(
         "Plot",
@@ -453,7 +510,12 @@ describe("Field: Plot Transfer", () => {
         "beansPerPod",
         initialBeansPerPod
       );
-      assert.fieldEquals("Plot", initialPlots[0].plotStart.plus(fillStart).plus(fillAmount).toString(), "source", "SOW");
+      assert.fieldEquals(
+        "Plot",
+        initialPlots[0].plotStart.plus(fillStart).plus(fillAmount).toString(),
+        "source",
+        "SOW"
+      );
     });
   });
 });

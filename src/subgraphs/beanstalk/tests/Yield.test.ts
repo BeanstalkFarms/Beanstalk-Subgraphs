@@ -1,7 +1,13 @@
 import { BigInt, BigDecimal, log, Bytes } from "@graphprotocol/graph-ts";
 import { assert, beforeEach, describe, test } from "matchstick-as/assembly/index";
 import { BigDecimal_isClose, ZERO_BD, ZERO_BI } from "../../../core/utils/Decimals";
-import { loadSilo, loadSiloAsset, loadSiloYield, loadTokenYield, loadWhitelistTokenSetting } from "../src/entities/Silo";
+import {
+  loadSilo,
+  loadSiloAsset,
+  loadSiloYield,
+  loadTokenYield,
+  loadWhitelistTokenSetting
+} from "../src/entities/Silo";
 import {
   BEAN_3CRV,
   BEAN_ERC20,
@@ -222,14 +228,22 @@ describe("APY Calculations", () => {
       const beanResult = loadTokenYield(BEAN_ERC20, 20000, 720);
       log.info("bean apy {}", [beanResult.beanAPY.toString()]);
       log.info("stalk apy {}", [beanResult.stalkAPY.toString()]);
-      assert.assertTrue(BigDecimal_isClose(beanResult.beanAPY, BigDecimal.fromString("0.350833589560757907"), desiredPrecision));
-      assert.assertTrue(BigDecimal_isClose(beanResult.stalkAPY, BigDecimal.fromString("1.658686024525446868"), desiredPrecision));
+      assert.assertTrue(
+        BigDecimal_isClose(beanResult.beanAPY, BigDecimal.fromString("0.350833589560757907"), desiredPrecision)
+      );
+      assert.assertTrue(
+        BigDecimal_isClose(beanResult.stalkAPY, BigDecimal.fromString("1.658686024525446868"), desiredPrecision)
+      );
 
       const wethResult = loadTokenYield(BEAN_WETH_CP2_WELL, 20000, 720);
       log.info("bean apy {}", [wethResult.beanAPY.toString()]);
       log.info("stalk apy {}", [wethResult.stalkAPY.toString()]);
-      assert.assertTrue(BigDecimal_isClose(wethResult.beanAPY, BigDecimal.fromString("0.479789213832026299"), desiredPrecision));
-      assert.assertTrue(BigDecimal_isClose(wethResult.stalkAPY, BigDecimal.fromString("3.092994680033632858"), desiredPrecision));
+      assert.assertTrue(
+        BigDecimal_isClose(wethResult.beanAPY, BigDecimal.fromString("0.479789213832026299"), desiredPrecision)
+      );
+      assert.assertTrue(
+        BigDecimal_isClose(wethResult.stalkAPY, BigDecimal.fromString("3.092994680033632858"), desiredPrecision)
+      );
 
       const zeroGsResult = loadTokenYield(UNRIPE_BEAN, 20000, 720);
       log.info("bean apy {}", [zeroGsResult.beanAPY.toString()]);

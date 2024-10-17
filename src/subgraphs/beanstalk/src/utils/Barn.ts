@@ -65,7 +65,8 @@ export function unripeChopped(params: ChopParams): void {
   const unripeBdvOne = getLatestBdv(unripeWhitelist)!;
   const underlyingBdvOne = getLatestBdv(underlyingWhitelist)!;
 
-  let id = params.type + "-" + params.event.transaction.hash.toHexString() + "-" + params.event.transactionLogIndex.toString();
+  let id =
+    params.type + "-" + params.event.transaction.hash.toHexString() + "-" + params.event.transactionLogIndex.toString();
   let chop = new ChopEntity(id);
   chop.farmer = params.account;
   chop.unripeToken = unripe.id;

@@ -3,13 +3,21 @@ import { createMockedFunction } from "matchstick-as/assembly/index";
 import { BEANSTALK } from "../../../../core/constants/raw/BeanstalkEthConstants";
 
 export function mockSeedGaugeLockedBeans(reserveBytes: Bytes, twaTimestamp: BigInt, lockedBeans: BigInt): void {
-  createMockedFunction(BEANSTALK, "getLockedBeansFromTwaReserves", "getLockedBeansFromTwaReserves(bytes,uint40):(uint256)")
+  createMockedFunction(
+    BEANSTALK,
+    "getLockedBeansFromTwaReserves",
+    "getLockedBeansFromTwaReserves(bytes,uint40):(uint256)"
+  )
     .withArgs([ethereum.Value.fromBytes(reserveBytes), ethereum.Value.fromUnsignedBigInt(twaTimestamp)])
     .returns([ethereum.Value.fromUnsignedBigInt(lockedBeans)]);
 }
 
 export function mockSeedGaugeLockedBeansReverts(reserveBytes: Bytes, twaTimestamp: BigInt): void {
-  createMockedFunction(BEANSTALK, "getLockedBeansFromTwaReserves", "getLockedBeansFromTwaReserves(bytes,uint40):(uint256)")
+  createMockedFunction(
+    BEANSTALK,
+    "getLockedBeansFromTwaReserves",
+    "getLockedBeansFromTwaReserves(bytes,uint40):(uint256)"
+  )
     .withArgs([ethereum.Value.fromBytes(reserveBytes), ethereum.Value.fromUnsignedBigInt(twaTimestamp)])
     .reverts();
 }

@@ -69,7 +69,10 @@ export function LibLockedUnderlying_getLockedUnderlying(
 
 // Returns a fraction of the underlying token that is locked for the given unripe token at this recap percent
 // Compared to the contract's implementation, the result already has div 1e18 applied.
-export function LibLockedUnderlying_getPercentLockedUnderlying(unripeToken: Address, recapPercentPaid: BigDecimal): BigDecimal {
+export function LibLockedUnderlying_getPercentLockedUnderlying(
+  unripeToken: Address,
+  recapPercentPaid: BigDecimal
+): BigDecimal {
   const unripeSupply = ERC20.bind(unripeToken).totalSupply().div(BigInt.fromString("1000000"));
   if (unripeSupply < BigInt.fromString("1000000")) {
     return ZERO_BD; // If < 1,000,000 Assume all supply is unlocked.

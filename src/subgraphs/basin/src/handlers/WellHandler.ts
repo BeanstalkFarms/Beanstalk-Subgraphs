@@ -1,5 +1,12 @@
 import { Address, BigInt, log } from "@graphprotocol/graph-ts";
-import { AddLiquidity, RemoveLiquidity, RemoveLiquidityOneToken, Shift, Swap, Sync } from "../../generated/Basin-ABIs/Well";
+import {
+  AddLiquidity,
+  RemoveLiquidity,
+  RemoveLiquidityOneToken,
+  Shift,
+  Swap,
+  Sync
+} from "../../generated/Basin-ABIs/Well";
 import { subBigIntArray, emptyBigIntArray, ZERO_BI } from "../../../../core/utils/Decimals";
 import {
   incrementWellDeposit,
@@ -178,7 +185,14 @@ export function handleShift(event: Shift): void {
 
   updateWellTokenUSDPrices(event.address, event.block.number);
 
-  updateWellVolumesAfterSwap(event.address, fromToken, amountIn, event.params.toToken, event.params.amountOut, event.block);
+  updateWellVolumesAfterSwap(
+    event.address,
+    fromToken,
+    amountIn,
+    event.params.toToken,
+    event.params.amountOut,
+    event.block
+  );
 
   incrementWellSwap(event.address);
 

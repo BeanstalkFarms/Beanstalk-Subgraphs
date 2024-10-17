@@ -29,6 +29,11 @@ describe("Field", () => {
     assertFieldHas(BEANSTALK.toHexString(), pods, ZERO_BI);
 
     assert.fieldEquals("Plot", plotStart.toString(), "source", "SOW");
-    assert.fieldEquals("Plot", plotStart.toString(), "beansPerPod", BI_10.pow(6).div(BigInt.fromU32(temperature)).toString());
+    assert.fieldEquals(
+      "Plot",
+      plotStart.toString(),
+      "beansPerPod",
+      BI_10.pow(6).div(BigInt.fromU32(temperature)).toString()
+    );
   });
 });

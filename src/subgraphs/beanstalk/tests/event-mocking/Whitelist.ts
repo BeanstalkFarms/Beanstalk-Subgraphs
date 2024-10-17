@@ -6,7 +6,12 @@ import { WhitelistToken as WhitelistToken_V4 } from "../../generated/Beanstalk-A
 import { mockBeanstalkEvent } from "../../../../core/tests/event-mocking/Util";
 import { DewhitelistToken } from "../../generated/Beanstalk-ABIs/Reseed";
 
-export function createWhitelistTokenV2Event(token: string, selector: string, seeds: BigInt, stalk: BigInt): WhitelistToken_V2 {
+export function createWhitelistTokenV2Event(
+  token: string,
+  selector: string,
+  seeds: BigInt,
+  stalk: BigInt
+): WhitelistToken_V2 {
   let event = changetype<WhitelistToken_V2>(mockBeanstalkEvent());
   event.parameters = new Array();
 

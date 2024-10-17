@@ -63,7 +63,11 @@ export function uniswapV2Reserves(pool: Address): BigInt[] {
 }
 
 // Returns the current price of beans in a uniswapv2 constant product pool
-export function constantProductPrice(beanReserves: BigDecimal, token2Reserves: BigDecimal, token2Price: BigDecimal): BigDecimal {
+export function constantProductPrice(
+  beanReserves: BigDecimal,
+  token2Reserves: BigDecimal,
+  token2Price: BigDecimal
+): BigDecimal {
   return token2Reserves.times(token2Price).div(beanReserves);
 }
 

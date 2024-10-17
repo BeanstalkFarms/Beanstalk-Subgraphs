@@ -71,7 +71,12 @@ export function fillListing_v1(
 
   // Assert PodFill
   const podFillId = getPodFillId(event.params.index, event);
-  assert.fieldEquals("PodFill", podFillId, "listing", event.params.from.toHexString() + "-" + event.params.index.toString());
+  assert.fieldEquals(
+    "PodFill",
+    podFillId,
+    "listing",
+    event.params.from.toHexString() + "-" + event.params.index.toString()
+  );
   assert.fieldEquals("PodFill", podFillId, "fromFarmer", event.params.from.toHexString());
   assert.fieldEquals("PodFill", podFillId, "toFarmer", event.params.to.toHexString());
   assert.fieldEquals("PodFill", podFillId, "amount", event.params.amount.toString());
@@ -98,7 +103,12 @@ export function fillListing_v2(
 
   // Assert PodFill
   const podFillId = getPodFillId(event.params.index, event);
-  assert.fieldEquals("PodFill", podFillId, "listing", event.params.from.toHexString() + "-" + event.params.index.toString());
+  assert.fieldEquals(
+    "PodFill",
+    podFillId,
+    "listing",
+    event.params.from.toHexString() + "-" + event.params.index.toString()
+  );
   assert.fieldEquals("PodFill", podFillId, "fromFarmer", event.params.from.toHexString());
   assert.fieldEquals("PodFill", podFillId, "toFarmer", event.params.to.toHexString());
   assert.fieldEquals("PodFill", podFillId, "amount", event.params.amount.toString());
@@ -290,7 +300,15 @@ export function createListing_v1_1(
   pricePerPod: BigInt,
   maxHarvestableIndex: BigInt
 ): PodListingCreated_v1_1 {
-  const event = createPodListingCreatedEvent_v1_1(account, index, start, listedPods, pricePerPod, maxHarvestableIndex, ZERO_BI);
+  const event = createPodListingCreatedEvent_v1_1(
+    account,
+    index,
+    start,
+    listedPods,
+    pricePerPod,
+    maxHarvestableIndex,
+    ZERO_BI
+  );
   handlePodListingCreated_v1_1(event);
   assertListingCreated_v1_1(event);
   return event;
@@ -327,7 +345,13 @@ export function createOrder_v1(
   pricePerPod: BigInt,
   maxPlaceInLine: BigInt
 ): PodOrderCreated_v1 {
-  const event = createPodOrderCreatedEvent(account, id, beans.times(BI_10.pow(6)).div(pricePerPod), pricePerPod, maxPlaceInLine);
+  const event = createPodOrderCreatedEvent(
+    account,
+    id,
+    beans.times(BI_10.pow(6)).div(pricePerPod),
+    pricePerPod,
+    maxPlaceInLine
+  );
   handlePodOrderCreated_v1(event);
   assertOrderCreated_v1(account, event);
   return event;
@@ -340,7 +364,16 @@ export function createOrder_v2(
   pricePerPod: BigInt,
   maxPlaceInLine: BigInt
 ): PodOrderCreated_v2 {
-  const event = createPodOrderCreatedEvent_v2(account, id, beans, pricePerPod, maxPlaceInLine, ONE_BI, pricingFunction, ZERO_BI);
+  const event = createPodOrderCreatedEvent_v2(
+    account,
+    id,
+    beans,
+    pricePerPod,
+    maxPlaceInLine,
+    ONE_BI,
+    pricingFunction,
+    ZERO_BI
+  );
   handlePodOrderCreated_v2(event);
   assertOrderCreated_v2(account, event);
   return event;

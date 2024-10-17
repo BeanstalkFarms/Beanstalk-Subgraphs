@@ -81,7 +81,9 @@ export function handlePodListingCancelled_indexed(event: PodListingCancelled_ind
 
 // PreReplant -> MarketV2
 export function handlePodOrderCreated_v1(event: PodOrderCreated_v1): void {
-  const beanAmount = event.params.amount.times(BigInt.fromI32(event.params.pricePerPod)).div(BigInt.fromString("1000000"));
+  const beanAmount = event.params.amount
+    .times(BigInt.fromI32(event.params.pricePerPod))
+    .div(BigInt.fromString("1000000"));
   podOrderCreated({
     event: event,
     account: event.params.account,

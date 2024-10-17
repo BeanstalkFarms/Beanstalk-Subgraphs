@@ -1,5 +1,12 @@
 import { BigDecimal, BigInt } from "@graphprotocol/graph-ts";
-import { BI_10, subBigIntArray, emptyBigIntArray, toBigInt, toDecimal, ZERO_BI } from "../../../../../core/utils/Decimals";
+import {
+  BI_10,
+  subBigIntArray,
+  emptyBigIntArray,
+  toBigInt,
+  toDecimal,
+  ZERO_BI
+} from "../../../../../core/utils/Decimals";
 
 // Retroactive replacement functionality for well function `calcRates` - did not exist in CP2 1.0
 export function calcRates(reserves: BigInt[], tokenDecimals: u32[]): BigInt[] {

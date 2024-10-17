@@ -323,10 +323,14 @@ describe("Well Entity: Liquidity Event Tests", () => {
     well.reserves = [BigInt.fromI32(3000).times(BI_10.pow(6)), BigInt.fromU32(1).times(BI_10.pow(18))];
     let deltaReserves = [BigInt.fromI32(1500).times(BI_10.pow(6)), ZERO_BI];
     let deltaLp = ONE_BI;
-    mockWellLpTokenUnderlying(toAddress(wellFn.id), deltaLp.abs(), well.reserves, well.lpTokenSupply, well.wellFunctionData, [
-      BigInt.fromString("878679656"),
-      BigInt.fromString("292893218813452475")
-    ]);
+    mockWellLpTokenUnderlying(
+      toAddress(wellFn.id),
+      deltaLp.abs(),
+      well.reserves,
+      well.lpTokenSupply,
+      well.wellFunctionData,
+      [BigInt.fromString("878679656"), BigInt.fromString("292893218813452475")]
+    );
 
     let tokenTradeVolume = calcLiquidityVolume(well, deltaReserves, deltaLp);
     assert.bigIntEquals(BigInt.fromString("-621320344"), tokenTradeVolume[0]);

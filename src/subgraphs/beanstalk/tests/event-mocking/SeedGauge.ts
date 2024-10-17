@@ -45,11 +45,16 @@ export function createGaugePointChangeEvent(season: BigInt, token: string, gauge
   return event as GaugePointChange;
 }
 
-export function createUpdateAverageStalkPerBdvPerSeasonEvent(newStalkPerBdvPerSeason: BigInt): UpdateAverageStalkPerBdvPerSeason {
+export function createUpdateAverageStalkPerBdvPerSeasonEvent(
+  newStalkPerBdvPerSeason: BigInt
+): UpdateAverageStalkPerBdvPerSeason {
   let event = changetype<UpdateAverageStalkPerBdvPerSeason>(mockBeanstalkEvent());
   event.parameters = new Array();
 
-  let param1 = new ethereum.EventParam("newStalkPerBdvPerSeason", ethereum.Value.fromUnsignedBigInt(newStalkPerBdvPerSeason));
+  let param1 = new ethereum.EventParam(
+    "newStalkPerBdvPerSeason",
+    ethereum.Value.fromUnsignedBigInt(newStalkPerBdvPerSeason)
+  );
 
   event.parameters.push(param1);
 
@@ -65,8 +70,14 @@ export function createFarmerGerminatingStalkBalanceChangedEvent(
   event.parameters = new Array();
 
   let param1 = new ethereum.EventParam("account", ethereum.Value.fromAddress(Address.fromString(account)));
-  let param2 = new ethereum.EventParam("deltaGerminatingStalk", ethereum.Value.fromUnsignedBigInt(deltaGerminatingStalk));
-  let param3 = new ethereum.EventParam("germinationState", ethereum.Value.fromUnsignedBigInt(BigInt.fromU32(germinationState)));
+  let param2 = new ethereum.EventParam(
+    "deltaGerminatingStalk",
+    ethereum.Value.fromUnsignedBigInt(deltaGerminatingStalk)
+  );
+  let param3 = new ethereum.EventParam(
+    "germinationState",
+    ethereum.Value.fromUnsignedBigInt(BigInt.fromU32(germinationState))
+  );
 
   event.parameters.push(param1);
   event.parameters.push(param2);
@@ -105,7 +116,10 @@ export function createTotalGerminatingStalkChangedEvent(
   event.parameters = new Array();
 
   let param1 = new ethereum.EventParam("germinationSeason", ethereum.Value.fromUnsignedBigInt(germinationSeason));
-  let param2 = new ethereum.EventParam("deltaGerminatingStalk", ethereum.Value.fromUnsignedBigInt(deltaGerminatingStalk));
+  let param2 = new ethereum.EventParam(
+    "deltaGerminatingStalk",
+    ethereum.Value.fromUnsignedBigInt(deltaGerminatingStalk)
+  );
 
   event.parameters.push(param1);
   event.parameters.push(param2);

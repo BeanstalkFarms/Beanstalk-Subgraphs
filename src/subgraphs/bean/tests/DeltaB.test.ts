@@ -148,7 +148,12 @@ describe("DeltaB", () => {
 
       // Initialize oracle
       handleMetapoolOracle(createMetapoolOracleEvent(ONE_BI, ZERO_BI, reserves1, b1));
-      assert.fieldEquals("TwaOracle", BEAN_3CRV.toHexString(), "priceCumulativeLast", "[100000000, 100000000000000000000]");
+      assert.fieldEquals(
+        "TwaOracle",
+        BEAN_3CRV.toHexString(),
+        "priceCumulativeLast",
+        "[100000000, 100000000000000000000]"
+      );
       assert.fieldEquals("PoolHourlySnapshot", prefixCurve + h1, "twaDeltaBeans", "0");
       assert.fieldEquals("PoolHourlySnapshot", prefixCurve + h1, "twaPrice", "0.9999995");
       assert.fieldEquals("BeanHourlySnapshot", BEAN_ERC20.toHexString() + "-6074", "twaDeltaB", "0");
@@ -187,7 +192,12 @@ describe("DeltaB", () => {
       event1.block = mockBlock(BigInt.fromI32(19200000), BigInt.fromI32(1713920000));
       handleWellOracle(event1);
 
-      assert.fieldEquals("TwaOracle", BEAN_WETH_CP2_WELL.toHexString(), "priceCumulativeLast", "[880610429, 1482837963]");
+      assert.fieldEquals(
+        "TwaOracle",
+        BEAN_WETH_CP2_WELL.toHexString(),
+        "priceCumulativeLast",
+        "[880610429, 1482837963]"
+      );
       // No sense checking prices during initialization
 
       // https://etherscan.io/tx/0x0b872f5503d732f3c9f736e914368791ab3c8da8d9fcd87f071574f0e9b7ca6f#eventlog
@@ -204,10 +214,20 @@ describe("DeltaB", () => {
 
       const prefixWell = BEAN_WETH_CP2_WELL.toHexString() + "-";
       const h1 = hourFromTimestamp(event2.block.timestamp).toString();
-      assert.fieldEquals("TwaOracle", BEAN_WETH_CP2_WELL.toHexString(), "priceCumulativeLast", "[880768318, 1483096961]");
+      assert.fieldEquals(
+        "TwaOracle",
+        BEAN_WETH_CP2_WELL.toHexString(),
+        "priceCumulativeLast",
+        "[880768318, 1483096961]"
+      );
       assert.fieldEquals("PoolHourlySnapshot", prefixWell + h1, "twaDeltaBeans", event2.params.deltaB.toString());
       assert.fieldEquals("PoolHourlySnapshot", prefixWell + h1, "twaPrice", "0.9128867742860822655628687132162919");
-      assert.fieldEquals("PoolHourlySnapshot", prefixWell + h1, "twaToken2Price", "3204.340276349048918425043871982445");
+      assert.fieldEquals(
+        "PoolHourlySnapshot",
+        prefixWell + h1,
+        "twaToken2Price",
+        "3204.340276349048918425043871982445"
+      );
 
       assert.fieldEquals(
         "TwaOracle",

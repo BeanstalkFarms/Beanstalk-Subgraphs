@@ -47,7 +47,9 @@ export function addDeposits(params: AddRemoveDepositsParams): void {
       deposit.stemV31 = stemFromSeason(params.seasons![i].toI32(), params.token);
     } else {
       deposit.depositVersion = isGaugeDeployed(v(), params.event.block.number) ? "v3.1" : "v3";
-      deposit.stemV31 = isGaugeDeployed(v(), params.event.block.number) ? deposit.stem! : deposit.stem!.times(BI_10.pow(6));
+      deposit.stemV31 = isGaugeDeployed(v(), params.event.block.number)
+        ? deposit.stem!
+        : deposit.stem!.times(BI_10.pow(6));
     }
 
     deposit = updateDeposit(deposit, params.amounts[i], params.bdvs![i], params.event)!;
@@ -79,7 +81,9 @@ export function removeDeposits(params: AddRemoveDepositsParams): void {
 
     // Use bdv if it was provided (v2 events dont provide bdv), otherwise infer
     let removedBdv =
-      params.bdvs != null ? params.bdvs![i] : params.amounts[i].times(deposit.depositedBDV).div(deposit.depositedAmount);
+      params.bdvs != null
+        ? params.bdvs![i]
+        : params.amounts[i].times(deposit.depositedBDV).div(deposit.depositedAmount);
 
     // If the amount goes to zero, the deposit is deleted and not returned
     const updatedDeposit = updateDeposit(deposit, params.amounts[i].neg(), removedBdv.neg(), params.event);

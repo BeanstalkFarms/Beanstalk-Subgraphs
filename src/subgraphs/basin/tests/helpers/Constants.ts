@@ -21,7 +21,9 @@ export const WETH_SWAP_AMOUNT = BigInt.fromU64(<u64>(1 * 10 ** 18));
 export const WELL_LP_AMOUNT = BigInt.fromU64(<u64>(10 * 10 ** 18));
 export const BEAN_USD_PRICE = BigInt.fromString("938452");
 export const BEAN_USD_AMOUNT = toDecimal(BEAN_SWAP_AMOUNT).times(toDecimal(BEAN_USD_PRICE));
-export const WETH_USD_AMOUNT = toDecimal(BEAN_SWAP_AMOUNT).div(toDecimal(WETH_SWAP_AMOUNT, 18)).times(toDecimal(BEAN_USD_PRICE));
+export const WETH_USD_AMOUNT = toDecimal(BEAN_SWAP_AMOUNT)
+  .div(toDecimal(WETH_SWAP_AMOUNT, 18))
+  .times(toDecimal(BEAN_USD_PRICE));
 
 export const SWAP_ACCOUNT = Address.fromString("0x1234567890abcdef1234567890abcdef12345678");
 

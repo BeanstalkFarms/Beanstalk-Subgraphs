@@ -1,5 +1,10 @@
 import { Address, BigInt, BigDecimal, ethereum } from "@graphprotocol/graph-ts";
-import { BEAN_3CRV_V1, BEAN_ERC20_V1, BEAN_LUSD_V1, CURVE_PRICE } from "../../../../../core/constants/raw/BeanstalkEthConstants";
+import {
+  BEAN_3CRV_V1,
+  BEAN_ERC20_V1,
+  BEAN_LUSD_V1,
+  CURVE_PRICE
+} from "../../../../../core/constants/raw/BeanstalkEthConstants";
 import { toDecimal, ZERO_BD, ZERO_BI } from "../../../../../core/utils/Decimals";
 import { loadOrCreatePool } from "../../entities/Pool";
 import { manualTwa } from "../price/TwaOracle";

@@ -23,7 +23,8 @@ export function manualTwa(poolAddress: Address, newReserves: BigInt[], timestamp
 
 export function setTwaLast(poolAddress: Address, newCumulative: BigInt[], timestamp: BigInt): boolean {
   let twaOracle = loadOrCreateTwaOracle(poolAddress);
-  const error = newCumulative[0] < twaOracle.priceCumulativeLast[0] || newCumulative[1] < twaOracle.priceCumulativeLast[1];
+  const error =
+    newCumulative[0] < twaOracle.priceCumulativeLast[0] || newCumulative[1] < twaOracle.priceCumulativeLast[1];
 
   twaOracle.priceCumulativeLast = newCumulative;
   twaOracle.lastUpdated = timestamp;
@@ -64,7 +65,11 @@ export function getTWAPrices(poolAddress: Address, type: TWAType, timestamp: Big
         .div(timeElapsed)
         .times(BI_10.pow(6))
         .div(ONE_BI.leftShift(112)),
-      newPriceCumulative[1].minus(twaOracle.priceCumulativeSun[1]).div(timeElapsed).times(BI_10.pow(6)).div(ONE_BI.leftShift(112))
+      newPriceCumulative[1]
+        .minus(twaOracle.priceCumulativeSun[1])
+        .div(timeElapsed)
+        .times(BI_10.pow(6))
+        .div(ONE_BI.leftShift(112))
     ];
   } else if (type == TWAType.CURVE) {
     // Curve

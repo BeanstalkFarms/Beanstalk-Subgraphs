@@ -36,7 +36,11 @@ class Pool {
  * @param prices - the Prices struct that the contract will return
  * @param mockPools - when true, mocks the return values from the individual pools' price call also
  */
-export function setMockBeanPrice(prices: Prices, contract: Address = BEANSTALK_PRICE_1, mockPools: boolean = true): void {
+export function setMockBeanPrice(
+  prices: Prices,
+  contract: Address = BEANSTALK_PRICE_1,
+  mockPools: boolean = true
+): void {
   const pricesReturn = toPricesStruct(prices);
 
   createMockedFunction(
@@ -153,7 +157,12 @@ export function mockPreReplantBeanEthPriceAndLiquidity(
     liquidity.div(ethPrice).div(BigDecimal.fromString("2")).times(pow(BD_10, 18)).truncate(0).toString()
   );
   const beanReserves = BigInt.fromString(
-    toDecimal(wethReserves, 18).times(ethPrice).div(price).times(BigDecimal.fromString("1000000")).truncate(0).toString()
+    toDecimal(wethReserves, 18)
+      .times(ethPrice)
+      .div(price)
+      .times(BigDecimal.fromString("1000000"))
+      .truncate(0)
+      .toString()
   );
   mockUniswapV2Reserves(BEAN_WETH_V1, wethReserves, beanReserves);
   return [wethReserves, beanReserves];

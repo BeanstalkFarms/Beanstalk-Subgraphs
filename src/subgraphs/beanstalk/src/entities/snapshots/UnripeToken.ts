@@ -21,7 +21,9 @@ export function takeUnripeTokenSnapshots(unripeToken: UnripeToken, block: ethere
     );
   }
   if (baseDaily == null && unripeToken.lastDailySnapshotDay !== null) {
-    baseDaily = UnripeTokenDailySnapshot.load(unripeToken.id.toHexString() + "-" + unripeToken.lastDailySnapshotDay!.toString());
+    baseDaily = UnripeTokenDailySnapshot.load(
+      unripeToken.id.toHexString() + "-" + unripeToken.lastDailySnapshotDay!.toString()
+    );
   }
   const hourly = new UnripeTokenHourlySnapshot(hourlyId);
   const daily = new UnripeTokenDailySnapshot(dailyId);
@@ -67,7 +69,9 @@ export function takeUnripeTokenSnapshots(unripeToken: UnripeToken, block: ethere
       hourly.deltaRecapPercent = hourly.deltaRecapPercent.plus(baseHourly.deltaRecapPercent);
       hourly.deltaTotalChoppedAmount = hourly.deltaTotalChoppedAmount.plus(baseHourly.deltaTotalChoppedAmount);
       hourly.deltaTotalChoppedBdv = hourly.deltaTotalChoppedBdv.plus(baseHourly.deltaTotalChoppedBdv);
-      hourly.deltaTotalChoppedBdvReceived = hourly.deltaTotalChoppedBdvReceived.plus(baseHourly.deltaTotalChoppedBdvReceived);
+      hourly.deltaTotalChoppedBdvReceived = hourly.deltaTotalChoppedBdvReceived.plus(
+        baseHourly.deltaTotalChoppedBdvReceived
+      );
     }
   } else {
     hourly.deltaUnderlyingToken = false;
@@ -127,7 +131,9 @@ export function takeUnripeTokenSnapshots(unripeToken: UnripeToken, block: ethere
       daily.deltaRecapPercent = daily.deltaRecapPercent.plus(baseDaily.deltaRecapPercent);
       daily.deltaTotalChoppedAmount = daily.deltaTotalChoppedAmount.plus(baseDaily.deltaTotalChoppedAmount);
       daily.deltaTotalChoppedBdv = daily.deltaTotalChoppedBdv.plus(baseDaily.deltaTotalChoppedBdv);
-      daily.deltaTotalChoppedBdvReceived = daily.deltaTotalChoppedBdvReceived.plus(baseDaily.deltaTotalChoppedBdvReceived);
+      daily.deltaTotalChoppedBdvReceived = daily.deltaTotalChoppedBdvReceived.plus(
+        baseDaily.deltaTotalChoppedBdvReceived
+      );
     }
   } else {
     daily.deltaUnderlyingToken = false;

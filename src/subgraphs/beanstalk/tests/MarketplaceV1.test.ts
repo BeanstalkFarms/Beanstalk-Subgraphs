@@ -46,7 +46,14 @@ describe("Marketplace", () => {
 
   describe("Marketplace v1", () => {
     test("Create a pod listing - full plot", () => {
-      const event = createListing_v1(account, listingIndex, sowedPods, ZERO_BI, listingPricePerPod, maxHarvestableIndex);
+      const event = createListing_v1(
+        account,
+        listingIndex,
+        sowedPods,
+        ZERO_BI,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [account + "-" + listingIndex.toString() + "-" + maxHarvestableIndex.toString()],
@@ -62,7 +69,14 @@ describe("Marketplace", () => {
       // Create a second listing to assert the market state again
       const listing2Index = listingIndex.times(BI_10);
       sow(account, listing2Index, sowedBeans, sowedPods);
-      const event2 = createListing_v1(account, listing2Index, sowedPods, ZERO_BI, listingPricePerPod, maxHarvestableIndex);
+      const event2 = createListing_v1(
+        account,
+        listing2Index,
+        sowedPods,
+        ZERO_BI,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [
@@ -81,7 +95,14 @@ describe("Marketplace", () => {
 
     test("Create a pod listing - partial plot", () => {
       const listedPods = sowedPods.minus(listingStart);
-      const event = createListing_v1(account, listingIndex, listedPods, listingStart, listingPricePerPod, maxHarvestableIndex);
+      const event = createListing_v1(
+        account,
+        listingIndex,
+        listedPods,
+        listingStart,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [account + "-" + listingIndex.toString() + "-" + maxHarvestableIndex.toString()],
@@ -97,7 +118,14 @@ describe("Marketplace", () => {
 
     test("Create a pod listing - partial plot", () => {
       const listedPods = sowedPods.minus(listingStart);
-      const event = createListing_v1(account, listingIndex, listedPods, listingStart, listingPricePerPod, maxHarvestableIndex);
+      const event = createListing_v1(
+        account,
+        listingIndex,
+        listedPods,
+        listingStart,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [account + "-" + listingIndex.toString() + "-" + maxHarvestableIndex.toString()],
@@ -148,7 +176,8 @@ describe("Marketplace", () => {
       const filledPods = listedPods.div(BigInt.fromString("4"));
       const filledBeans = beans_BI(2000);
       const fillEvent = fillListing_v1(account, account2, listingIndex, listingStart, filledPods, listingPricePerPod);
-      const fillListingId = "podListingFilled-" + fillEvent.transaction.hash.toHexString() + "-" + fillEvent.logIndex.toString();
+      const fillListingId =
+        "podListingFilled-" + fillEvent.transaction.hash.toHexString() + "-" + fillEvent.logIndex.toString();
       assert.fieldEquals("PodListingFilled", fillListingId, "placeInLine", placeInLine.toString());
       assert.fieldEquals("PodFill", getPodFillId(listingIndex, fillEvent), "placeInLine", placeInLine.toString());
 
@@ -156,7 +185,10 @@ describe("Marketplace", () => {
       const newListingIndex = fillEvent.params.index.plus(listingStart).plus(filledPods);
       const cancelListingEvent = cancelListing(account, newListingIndex);
       const cancelListingId =
-        "podListingCancelled-" + cancelListingEvent.transaction.hash.toHexString() + "-" + cancelListingEvent.logIndex.toString();
+        "podListingCancelled-" +
+        cancelListingEvent.transaction.hash.toHexString() +
+        "-" +
+        cancelListingEvent.logIndex.toString();
       assert.fieldEquals("PodListingCancelled", cancelListingId, "placeInLine", placeInLine.toString());
 
       // Test order fill
@@ -166,11 +198,24 @@ describe("Marketplace", () => {
       placeInLine = orderPlotIndex.minus(newHarvestable);
 
       createOrder_v1(account, orderId, orderBeans, orderPricePerPod, maxHarvestableIndex);
-      const fillOrderEvent = fillOrder_v1(account2, account, orderId, orderPlotIndex, ZERO_BI, orderedPods, orderPricePerPod);
+      const fillOrderEvent = fillOrder_v1(
+        account2,
+        account,
+        orderId,
+        orderPlotIndex,
+        ZERO_BI,
+        orderedPods,
+        orderPricePerPod
+      );
       const fillOrderId =
         "podOrderFilled-" + fillOrderEvent.transaction.hash.toHexString() + "-" + fillOrderEvent.logIndex.toString();
       assert.fieldEquals("PodOrderFilled", fillOrderId, "placeInLine", placeInLine.toString());
-      assert.fieldEquals("PodFill", getPodFillId(orderPlotIndex, fillOrderEvent), "placeInLine", placeInLine.toString());
+      assert.fieldEquals(
+        "PodFill",
+        getPodFillId(orderPlotIndex, fillOrderEvent),
+        "placeInLine",
+        placeInLine.toString()
+      );
     });
 
     describe("Tests requiring Listing", () => {
@@ -268,7 +313,17 @@ describe("Marketplace", () => {
         assert.fieldEquals("PodListing", listingID, "status", "CANCELLED");
         assert.fieldEquals("PodListing", listingID, "remainingAmount", cancelledAmount.toString());
 
-        assertMarketListingsState("0", [], cancelledAmount, ZERO_BI, cancelledAmount, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI);
+        assertMarketListingsState(
+          "0",
+          [],
+          cancelledAmount,
+          ZERO_BI,
+          cancelledAmount,
+          ZERO_BI,
+          ZERO_BI,
+          ZERO_BI,
+          ZERO_BI
+        );
       });
 
       test("Cancel listing - partial", () => {
@@ -286,7 +341,17 @@ describe("Marketplace", () => {
         assert.fieldEquals("PodListing", newListingID, "status", "CANCELLED_PARTIAL");
         assert.fieldEquals("PodListing", newListingID, "remainingAmount", remaining.toString());
 
-        assertMarketListingsState("0", [], listedPods, ZERO_BI, remaining, ZERO_BI, filledPods, filledPods, filledBeans);
+        assertMarketListingsState(
+          "0",
+          [],
+          listedPods,
+          ZERO_BI,
+          remaining,
+          ZERO_BI,
+          filledPods,
+          filledPods,
+          filledBeans
+        );
       });
 
       test("Recreate listing", () => {
@@ -451,7 +516,17 @@ describe("Marketplace", () => {
         assert.fieldEquals("PodOrder", orderId.toHexString(), "podAmountFilled", orderedPods.toString());
         assert.fieldEquals("PodOrder", orderId.toHexString(), "fills", "[" + getPodFillId(orderPlotIndex, event) + "]");
 
-        assertMarketOrdersState("0", [], orderBeans, ZERO_BI, orderBeans, orderedPods, ZERO_BI, orderedPods, orderBeans);
+        assertMarketOrdersState(
+          "0",
+          [],
+          orderBeans,
+          ZERO_BI,
+          orderBeans,
+          orderedPods,
+          ZERO_BI,
+          orderedPods,
+          orderBeans
+        );
       });
 
       test("Fill order - partial", () => {
@@ -460,7 +535,15 @@ describe("Marketplace", () => {
         const soldToOrder1 = orderedPods.div(BigInt.fromU32(5));
         const orderBeans1 = orderBeans.div(BigInt.fromU32(5));
         sow(account2, orderPlotIndex, sowedBeans, orderedPods.times(BigInt.fromU32(2)));
-        const event = fillOrder_v1(account2, account, orderId, orderPlotIndex, beans_BI(1000), soldToOrder1, orderPricePerPod);
+        const event = fillOrder_v1(
+          account2,
+          account,
+          orderId,
+          orderPlotIndex,
+          beans_BI(1000),
+          soldToOrder1,
+          orderPricePerPod
+        );
 
         assert.fieldEquals("PodOrder", orderId.toHexString(), "status", "ACTIVE");
         assert.fieldEquals("PodOrder", orderId.toHexString(), "beanAmountFilled", orderBeans1.toString());
@@ -483,7 +566,15 @@ describe("Marketplace", () => {
         const newOrderPlotIndex = orderPlotIndex.plus(beans_BI(1000)).plus(soldToOrder1);
         const soldToOrder2 = orderedPods.minus(soldToOrder1);
         const orderBeans2 = orderBeans.minus(orderBeans1);
-        const event2 = fillOrder_v1(account2, account, orderId, newOrderPlotIndex, ZERO_BI, soldToOrder2, orderPricePerPod);
+        const event2 = fillOrder_v1(
+          account2,
+          account,
+          orderId,
+          newOrderPlotIndex,
+          ZERO_BI,
+          soldToOrder2,
+          orderPricePerPod
+        );
 
         assert.fieldEquals("PodOrder", orderId.toHexString(), "status", "FILLED");
         assert.fieldEquals("PodOrder", orderId.toHexString(), "beanAmountFilled", orderBeans.toString());
@@ -495,7 +586,17 @@ describe("Marketplace", () => {
           "[" + getPodFillId(orderPlotIndex, event) + ", " + getPodFillId(newOrderPlotIndex, event2) + "]"
         );
 
-        assertMarketOrdersState("0", [], orderBeans, ZERO_BI, orderBeans, orderedPods, ZERO_BI, orderedPods, orderBeans);
+        assertMarketOrdersState(
+          "0",
+          [],
+          orderBeans,
+          ZERO_BI,
+          orderBeans,
+          orderedPods,
+          ZERO_BI,
+          orderedPods,
+          orderBeans
+        );
       });
 
       test("Cancel order - full", () => {
@@ -530,7 +631,12 @@ describe("Marketplace", () => {
         assert.fieldEquals("PodOrder", orderId.toHexString(), "status", "CANCELLED_PARTIAL");
         assert.fieldEquals("PodOrder", orderId.toHexString(), "beanAmountFilled", orderBeans1.toString());
         assert.fieldEquals("PodOrder", orderId.toHexString(), "podAmountFilled", soldToOrder1.toString());
-        assert.fieldEquals("PodOrder", orderId.toHexString(), "fills", "[" + getPodFillId(orderPlotIndex, fillEvent) + "]");
+        assert.fieldEquals(
+          "PodOrder",
+          orderId.toHexString(),
+          "fills",
+          "[" + getPodFillId(orderPlotIndex, fillEvent) + "]"
+        );
 
         assertMarketOrdersState(
           "0",
@@ -628,7 +734,14 @@ describe("Marketplace", () => {
   // At replant, but before v2, there was a slight change in the listing event
   describe("Marketplace v1_1", () => {
     test("Create a pod listing - full plot", () => {
-      const event = createListing_v1_1(account, listingIndex, sowedPods, ZERO_BI, listingPricePerPod, maxHarvestableIndex);
+      const event = createListing_v1_1(
+        account,
+        listingIndex,
+        sowedPods,
+        ZERO_BI,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [account + "-" + listingIndex.toString() + "-" + maxHarvestableIndex.toString()],
@@ -644,7 +757,14 @@ describe("Marketplace", () => {
       // Create a second listing to assert the market state again
       const listing2Index = listingIndex.times(BI_10);
       sow(account, listing2Index, sowedBeans, sowedPods);
-      const event2 = createListing_v1_1(account, listing2Index, sowedPods, ZERO_BI, listingPricePerPod, maxHarvestableIndex);
+      const event2 = createListing_v1_1(
+        account,
+        listing2Index,
+        sowedPods,
+        ZERO_BI,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [
@@ -663,7 +783,14 @@ describe("Marketplace", () => {
 
     test("Create a pod listing - partial plot", () => {
       const listedPods = sowedPods.minus(listingStart);
-      const event = createListing_v1_1(account, listingIndex, listedPods, listingStart, listingPricePerPod, maxHarvestableIndex);
+      const event = createListing_v1_1(
+        account,
+        listingIndex,
+        listedPods,
+        listingStart,
+        listingPricePerPod,
+        maxHarvestableIndex
+      );
       assertMarketListingsState(
         "0",
         [account + "-" + listingIndex.toString() + "-" + maxHarvestableIndex.toString()],

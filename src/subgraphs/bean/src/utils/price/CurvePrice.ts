@@ -35,14 +35,18 @@ export function curvePriceAndLp(pool: Address): BigDecimal[] {
 
   let lpValue = ZERO_BD;
   if (pool == BEAN_3CRV_V1) {
-    beanCrvPrice = toDecimal(lpContract.get_dy(ZERO_BI, BigInt.fromI32(1), BigInt.fromI32(1000000)), 18).div(amountAfterFee);
+    beanCrvPrice = toDecimal(lpContract.get_dy(ZERO_BI, BigInt.fromI32(1), BigInt.fromI32(1000000)), 18).div(
+      amountAfterFee
+    );
 
     let crv3Contract = ERC20.bind(CRV3_TOKEN);
     let crvHolding = toDecimal(crv3Contract.balanceOf(pool), 18);
     lpValue = crvHolding.times(metapoolPrice);
   } else if (pool == BEAN_LUSD_V1) {
     // price in LUSD
-    let priceInLusd = toDecimal(lpContract.get_dy(ZERO_BI, BigInt.fromI32(1), BigInt.fromI32(1000000)), 18).div(amountAfterFee);
+    let priceInLusd = toDecimal(lpContract.get_dy(ZERO_BI, BigInt.fromI32(1), BigInt.fromI32(1000000)), 18).div(
+      amountAfterFee
+    );
 
     let lusdContract = ERC20.bind(LUSD);
     let lusd3PoolContract = Bean3CRV.bind(LUSD_3POOL);

@@ -336,7 +336,8 @@ export function calculateGaugeVAPYs(
       const index = season.mod(BigInt.fromString("2")) == ZERO_BI ? 1 : 0;
       beanBdv = beanBdv + parseFloat(germinatingBeanBdv[index].toString());
       for (let j = 0; j < gaugeLpDepositedBdvCopy.length; ++j) {
-        gaugeLpDepositedBdvCopy[j] = gaugeLpDepositedBdvCopy[j] + parseFloat(gaugeLpGerminatingBdv[j][index].toString());
+        gaugeLpDepositedBdvCopy[j] =
+          gaugeLpDepositedBdvCopy[j] + parseFloat(gaugeLpGerminatingBdv[j][index].toString());
       }
       gaugeBdv = beanBdv + f64_sum(gaugeLpDepositedBdvCopy);
       _nonGaugeDepositedBdv = _nonGaugeDepositedBdv + parseFloat(nonGaugeGerminatingBdv[index].toString());

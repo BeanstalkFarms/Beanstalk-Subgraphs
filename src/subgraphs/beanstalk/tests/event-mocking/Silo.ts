@@ -68,7 +68,12 @@ export function createAddDepositV3Event(
   return addDepositEvent as AddDeposit;
 }
 
-export function createRemoveDepositV2Event(account: string, token: string, season: i32, amount: BigInt): RemoveDepositV2 {
+export function createRemoveDepositV2Event(
+  account: string,
+  token: string,
+  season: i32,
+  amount: BigInt
+): RemoveDepositV2 {
   let removeDepositEvent = changetype<RemoveDepositV2>(mockBeanstalkEvent());
   removeDepositEvent.parameters = new Array();
   let accountParam = new ethereum.EventParam("account", ethereum.Value.fromAddress(Address.fromString(account)));

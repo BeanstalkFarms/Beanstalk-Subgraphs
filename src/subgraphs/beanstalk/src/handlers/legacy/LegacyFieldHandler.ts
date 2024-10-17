@@ -27,17 +27,47 @@ export function handleWeatherChange(event: WeatherChange): void {
 
 // PreReplant -> Replanted
 export function handleSupplyIncrease(event: SupplyIncrease): void {
-  updateFieldTotals(event.address, event.address, event.params.newSoil, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, event.block);
+  updateFieldTotals(
+    event.address,
+    event.address,
+    event.params.newSoil,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    event.block
+  );
 }
 
 // PreReplant -> Replanted
 export function handleSupplyDecrease(event: SupplyDecrease): void {
-  updateFieldTotals(event.address, event.address, event.params.newSoil, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, event.block);
+  updateFieldTotals(
+    event.address,
+    event.address,
+    event.params.newSoil,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    event.block
+  );
 }
 
 // PreReplant -> Replanted
 export function handleSupplyNeutral(event: SupplyNeutral): void {
-  updateFieldTotals(event.address, event.address, event.params.newSoil, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, ZERO_BI, event.block);
+  updateFieldTotals(
+    event.address,
+    event.address,
+    event.params.newSoil,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BI,
+    event.block
+  );
 }
 
 // PreReplant -> Replanted

@@ -87,7 +87,9 @@ export function recordRemoveLiquidityEvent(event: RemoveLiquidity): void {
   withdraw.liquidity = event.params.lpAmountIn;
   withdraw.tokens = well.tokens;
   withdraw.reserves = event.params.tokenAmountsOut;
-  withdraw.amountUSD = getBigDecimalArrayTotal(getCalculatedReserveUSDValues(well.tokens, event.params.tokenAmountsOut));
+  withdraw.amountUSD = getBigDecimalArrayTotal(
+    getCalculatedReserveUSDValues(well.tokens, event.params.tokenAmountsOut)
+  );
   withdraw.tokenPrice = well.tokenPrice;
   withdraw.save();
 }

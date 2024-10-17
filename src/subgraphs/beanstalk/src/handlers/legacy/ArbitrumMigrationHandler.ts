@@ -81,7 +81,13 @@ export function handleInternalBalanceMigrated(event: InternalBalanceMigrated): v
 }
 
 // isReseed: true for reseed scripts, false for contract account migration (see L1ReceiverFacet.sol)
-function addMigratedPlot(account: Address, index: BigInt, amount: BigInt, event: ethereum.Event, isReseed: boolean): void {
+function addMigratedPlot(
+  account: Address,
+  index: BigInt,
+  amount: BigInt,
+  event: ethereum.Event,
+  isReseed: boolean
+): void {
   // The migration logic conflicts with some cumulative values already set in utils/b3-migration/Init.
   // Therefore the basic "sow" method is unsuitable for this purpose
 

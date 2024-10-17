@@ -46,7 +46,15 @@ export function handleSunrise_v1(event: Sunrise): void {
   }
 
   const totalPrice = weightedPrice.div(totalLiquidity);
-  updateBeanValues(beanToken, totalPrice, ZERO_BI, ZERO_BI, ZERO_BD, totalLiquidity.minus(bean.liquidityUSD), event.block);
+  updateBeanValues(
+    beanToken,
+    totalPrice,
+    ZERO_BI,
+    ZERO_BI,
+    ZERO_BD,
+    totalLiquidity.minus(bean.liquidityUSD),
+    event.block
+  );
   checkBeanCross(beanToken, bean.price, totalPrice, event.block);
   updateBeanTwa(event.block);
 }

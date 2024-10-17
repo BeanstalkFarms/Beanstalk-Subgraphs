@@ -25,7 +25,10 @@ export function handleTransferGenesis(event: TransferEventGenesis): void {
 }
 
 export function handleTransferWinter(event: TransferEventWinter): void {
-  log.info("WINTER TRANSFER! BEANFT: {}, RECEIVER: {}", [event.params.tokenId.toI32().toString(), event.params.to.toHexString()]);
+  log.info("WINTER TRANSFER! BEANFT: {}, RECEIVER: {}", [
+    event.params.tokenId.toI32().toString(),
+    event.params.to.toHexString()
+  ]);
   let from = event.params.from.toHexString();
   let to = event.params.to.toHexString();
   let tokenId = event.params.tokenId.toI32();
@@ -44,7 +47,10 @@ export function handleTransferBarnRaise(event: TransferEventBarnRaise): void {
 }
 
 export function handleTransferBasin(event: TransferEventBasin): void {
-  log.info("BASIN TRANSFER! BEANFT: {}, RECEIVER: {}", [event.params.tokenId.toI32().toString(), event.params.to.toHexString()]);
+  log.info("BASIN TRANSFER! BEANFT: {}, RECEIVER: {}", [
+    event.params.tokenId.toI32().toString(),
+    event.params.to.toHexString()
+  ]);
   let from = event.params.from.toHexString();
   let to = event.params.to.toHexString();
   let tokenId = event.params.tokenId.toI32();

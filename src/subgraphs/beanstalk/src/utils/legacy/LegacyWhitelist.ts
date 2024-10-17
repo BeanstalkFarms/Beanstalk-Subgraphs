@@ -20,7 +20,8 @@ export function legacyInitGauge(event: UpdateGaugeSettings, setting: WhitelistTo
   // On initial gauge deployment, there was no GaugePointChange event emitted. Need to initialize BEANETH here
   if (
     event.params.token == BEAN_WETH_CP2_WELL &&
-    event.transaction.hash.toHexString().toLowerCase() == "0x299a4b93b8d19f8587b648ce04e3f5e618ea461426bb2b2337993b5d6677f6a7"
+    event.transaction.hash.toHexString().toLowerCase() ==
+      "0x299a4b93b8d19f8587b648ce04e3f5e618ea461426bb2b2337993b5d6677f6a7"
   ) {
     setting.gaugePoints = BI_10.pow(20);
   }

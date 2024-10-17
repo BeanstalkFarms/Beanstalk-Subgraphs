@@ -88,7 +88,11 @@ export function loadPrevFarmerGerminatingEvent(account: Address): PrevFarmerGerm
 }
 
 // (legacy bugfix adjustment)
-export function savePrevFarmerGerminatingEvent(account: Address, event: ethereum.Event, deltaGerminatingStalk: BigInt): void {
+export function savePrevFarmerGerminatingEvent(
+  account: Address,
+  event: ethereum.Event,
+  deltaGerminatingStalk: BigInt
+): void {
   const savedEvent = new PrevFarmerGerminatingEvent(account);
   savedEvent.eventBlock = event.block.number;
   savedEvent.logIndex = event.logIndex;

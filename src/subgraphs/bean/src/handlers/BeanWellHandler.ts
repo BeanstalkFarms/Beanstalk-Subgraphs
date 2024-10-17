@@ -1,5 +1,12 @@
 import { Address, BigDecimal, BigInt, ethereum } from "@graphprotocol/graph-ts";
-import { AddLiquidity, RemoveLiquidity, RemoveLiquidityOneToken, Shift, Swap, Sync } from "../../generated/Bean-ABIs/Well";
+import {
+  AddLiquidity,
+  RemoveLiquidity,
+  RemoveLiquidityOneToken,
+  Shift,
+  Swap,
+  Sync
+} from "../../generated/Bean-ABIs/Well";
 import { subBigIntArray, toDecimal, ZERO_BD, ZERO_BI } from "../../../../core/utils/Decimals";
 import { loadOrCreatePool } from "../entities/Pool";
 import { BeanstalkPrice_try_price, getPoolPrice } from "../utils/price/BeanstalkPrice";
@@ -10,11 +17,23 @@ import { v } from "../utils/constants/Version";
 import { getProtocolToken } from "../../../../core/constants/RuntimeConstants";
 
 export function handleAddLiquidity(event: AddLiquidity): void {
-  handleLiquidityChange(event.address, event.params.tokenAmountsIn[0], event.params.tokenAmountsIn[1], false, event.block);
+  handleLiquidityChange(
+    event.address,
+    event.params.tokenAmountsIn[0],
+    event.params.tokenAmountsIn[1],
+    false,
+    event.block
+  );
 }
 
 export function handleRemoveLiquidity(event: RemoveLiquidity): void {
-  handleLiquidityChange(event.address, event.params.tokenAmountsOut[0], event.params.tokenAmountsOut[1], true, event.block);
+  handleLiquidityChange(
+    event.address,
+    event.params.tokenAmountsOut[0],
+    event.params.tokenAmountsOut[1],
+    true,
+    event.block
+  );
 }
 
 export function handleRemoveLiquidityOneToken(event: RemoveLiquidityOneToken): void {
@@ -100,7 +119,15 @@ function handleLiquidityChange(
   updatePoolValues(poolAddress, volumeBean, volumeUSD, deltaLiquidityUSD, wellPrice.deltaB, block);
   updatePoolPrice(poolAddress, newPrice, block);
 
-  updateBeanAfterPoolSwap(poolAddress, toDecimal(wellPrice.price), volumeBean, volumeUSD, deltaLiquidityUSD, block, beanPrice);
+  updateBeanAfterPoolSwap(
+    poolAddress,
+    toDecimal(wellPrice.price),
+    volumeBean,
+    volumeUSD,
+    deltaLiquidityUSD,
+    block,
+    beanPrice
+  );
 }
 
 function handleSwapEvent(
@@ -134,5 +161,13 @@ function handleSwapEvent(
   updatePoolValues(poolAddress, volumeBean, volumeUSD, deltaLiquidityUSD, wellPrice.deltaB, block);
   updatePoolPrice(poolAddress, newPrice, block);
 
-  updateBeanAfterPoolSwap(poolAddress, toDecimal(wellPrice.price), volumeBean, volumeUSD, deltaLiquidityUSD, block, beanPrice);
+  updateBeanAfterPoolSwap(
+    poolAddress,
+    toDecimal(wellPrice.price),
+    volumeBean,
+    volumeUSD,
+    deltaLiquidityUSD,
+    block,
+    beanPrice
+  );
 }

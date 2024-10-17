@@ -55,7 +55,9 @@ export function handleUpdateAverageStalkPerBdvPerSeason(event: UpdateAverageStal
   // The correct approach is iterating whitelisted assets each season, multipying bdv and seeds
 
   // Divide by bdv decimals. newStalkPerBdvPerSeason is per unit of bdv, not per micro bdv.
-  silo.grownStalkPerSeason = silo.depositedBDV.times(event.params.newStalkPerBdvPerSeason).div(BI_10.pow(<u8>beanDecimals()));
+  silo.grownStalkPerSeason = silo.depositedBDV
+    .times(event.params.newStalkPerBdvPerSeason)
+    .div(BI_10.pow(<u8>beanDecimals()));
   takeSiloSnapshots(silo, event.block);
   silo.save();
 
@@ -77,7 +79,9 @@ export function handleFarmerGerminatingStalkBalanceChanged(event: FarmerGerminat
     // current season when converting. See ConvertFacet._depositTokensForConvert for more information.
     // If the event's germinationState doesnt match with the current season, use the prior season.
     const germinatingSeason =
-      germinationSeasonCategory(currentSeason) === germinationEnumCategory(event.params.germ) ? currentSeason : currentSeason - 1;
+      germinationSeasonCategory(currentSeason) === germinationEnumCategory(event.params.germ)
+        ? currentSeason
+        : currentSeason - 1;
 
     let farmerGerminating = loadOrCreateGerminating(event.params.account, germinatingSeason, true);
     farmerGerminating.stalk = farmerGerminating.stalk.plus(event.params.delta);
@@ -152,7 +156,9 @@ export function handleTotalStalkChangedFromGermination(event: TotalStalkChangedF
 
 // GAUGE CONFIGURATION SETTINGS //
 
-export function handleUpdatedOptimalPercentDepositedBdvForToken(event: UpdatedOptimalPercentDepositedBdvForToken): void {
+export function handleUpdatedOptimalPercentDepositedBdvForToken(
+  event: UpdatedOptimalPercentDepositedBdvForToken
+): void {
   let siloSettings = loadWhitelistTokenSetting(event.params.token);
   siloSettings.optimalPercentDepositedBdv = event.params.optimalPercentDepositedBdv;
   siloSettings.updatedAt = event.block.timestamp;

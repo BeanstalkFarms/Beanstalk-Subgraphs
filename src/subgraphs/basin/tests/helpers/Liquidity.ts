@@ -9,7 +9,12 @@ import {
 } from "../../src/handlers/WellHandler";
 import { BEAN_SWAP_AMOUNT, SWAP_ACCOUNT, WELL, WELL_FUNCTION, WELL_LP_AMOUNT, WETH_SWAP_AMOUNT } from "./Constants";
 import { createContractCallMocks } from "./Functions";
-import { createAddLiquidityEvent, createRemoveLiquidityEvent, createRemoveLiquidityOneTokenEvent, createSyncEvent } from "./Well";
+import {
+  createAddLiquidityEvent,
+  createRemoveLiquidityEvent,
+  createRemoveLiquidityOneTokenEvent,
+  createSyncEvent
+} from "./Well";
 import { BI_10, subBigIntArray, ONE_BD, ZERO_BI, addBigIntArray } from "../../../../core/utils/Decimals";
 import { mockWellLpTokenUnderlying } from "../../../../core/tests/event-mocking/Tokens";
 import { loadWell } from "../../src/entities/Well";
@@ -62,7 +67,10 @@ export function mockRemoveLiquidityOneBean(lpAmount: BigInt = WELL_LP_AMOUNT): s
   return newEvent.transaction.hash.toHexString() + "-" + newEvent.logIndex.toString();
 }
 
-export function mockRemoveLiquidityOneWeth(lpAmount: BigInt = WELL_LP_AMOUNT, beanPriceMultiple: BigDecimal = ONE_BD): string {
+export function mockRemoveLiquidityOneWeth(
+  lpAmount: BigInt = WELL_LP_AMOUNT,
+  beanPriceMultiple: BigDecimal = ONE_BD
+): string {
   createContractCallMocks(beanPriceMultiple);
   mockCalcLPTokenUnderlying_RemoveLiq(lpAmount.neg());
   let newEvent = createRemoveLiquidityOneTokenEvent(WELL, SWAP_ACCOUNT, lpAmount, WETH, WETH_SWAP_AMOUNT);
@@ -87,10 +95,14 @@ function mockCalcLPTokenUnderlying_AddLiq(deltaReserves: BigInt[], lpDelta: BigI
 // Proxy to the mockWellLpTokenUnderlying method, adds base well amounts to reserves/lp delta
 function mockCalcLPTokenUnderlying_RemoveLiq(lpDelta: BigInt): void {
   const well = loadWell(WELL);
-  mockWellLpTokenUnderlying(toAddress(well.wellFunction), lpDelta.abs(), well.reserves, well.lpTokenSupply, Bytes.empty(), [
-    BigInt.fromU32(150).times(BI_10.pow(6)),
-    BigInt.fromU32(5).times(BI_10.pow(15))
-  ]);
+  mockWellLpTokenUnderlying(
+    toAddress(well.wellFunction),
+    lpDelta.abs(),
+    well.reserves,
+    well.lpTokenSupply,
+    Bytes.empty(),
+    [BigInt.fromU32(150).times(BI_10.pow(6)), BigInt.fromU32(5).times(BI_10.pow(15))]
+  );
 }
 
 export function loadDeposit(id: string): Deposit {
