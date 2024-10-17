@@ -1,0 +1,26 @@
+{
+  "name": "beanstalk-subgraphs",
+  "license": "MIT",
+  "description": "Subgraphs for Beanstalk Protocol",
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "scripts": {
+    "codegen": "./scripts/codegen.sh",
+    "build": "./scripts/build.sh",
+    "test": "./scripts/test.sh",
+    "testd": "./scripts/test-docker.sh",
+    "testd-named": "./scripts/named-test-docker.sh",
+    "prettier": "prettier --write ."
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.79.2",
+    "@graphprotocol/graph-ts": "0.34.0"
+  },
+  "devDependencies": {
+    "matchstick-as": "^0.6.0",
+    "prettier": "^3.3.3"
+  },
+  "private": true
+}
