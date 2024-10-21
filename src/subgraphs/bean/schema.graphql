@@ -27,8 +27,10 @@ type Token @entity {
 }
 
 type Season @entity {
-  "Season number"
+  "Season number (string)"
   id: ID!
+  "Season number (int)"
+  season: Int!
 
   # Snapshots
   beanHourlySnapshots: BeanHourlySnapshot! @derivedFrom(field: "season")
