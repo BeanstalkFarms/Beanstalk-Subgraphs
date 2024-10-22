@@ -1,4 +1,4 @@
-import { Bytes } from "@graphprotocol/graph-ts";
+import { Address, Bytes } from "@graphprotocol/graph-ts";
 import { BoreWell } from "../../generated/Basin-ABIs/Aquifer";
 import { Well } from "../../generated/templates";
 import { loadOrCreateToken } from "../entities/Token";
@@ -25,11 +25,15 @@ export function handleBoreWell(event: BoreWell): void {
   loadOrCreateImplementation(event.params.implementation);
   well.implementation = event.params.implementation;
 
+  const wellPumps: Bytes[] = [];
+  const wellPumpData: Bytes[] = [];
   for (let i = 0; i < event.params.pumps.length; i++) {
     loadOrCreatePump(event.params.pumps[i]);
-    well.pumps.push(event.params.pumps[i].target);
-    well.pumpData.push(event.params.pumps[i].data);
+    wellPumps.push(event.params.pumps[i].target);
+    wellPumpData.push(event.params.pumps[i].data);
   }
+  well.pumps = wellPumps;
+  well.pumpData = wellPumpData;
 
   loadOrCreateWellFunction(event.params.wellFunction.target);
   well.wellFunction = event.params.wellFunction.target;
