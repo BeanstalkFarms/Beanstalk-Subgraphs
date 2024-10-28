@@ -1,5 +1,3 @@
-<img src="https://github.com/BeanstalkFarms/Beanstalk-Brand-Assets/blob/main/BEAN/bean-128x128.png" alt="Beanstalk logo" align="right" width="120" />
-
 # Beanstalk Subgraphs
 
 [![Discord][discord-badge]][discord-url]
@@ -7,7 +5,7 @@
 [discord-badge]: https://img.shields.io/discord/880413392916054098?label=Beanstalk
 [discord-url]: https://discord.gg/beanstalk
 
-**Indexes events emitted by [Beanstalk](https://etherscan.io/address/0xc1e088fc1323b20bcbee9bd1b9fc9546db5624c5).**
+**Indexes events emitted by [Beanstalk](https://github.com/BeanstalkFarms/Beanstalk).**
 
 ## Subgraphs
 
