@@ -39,3 +39,7 @@ It may be necessary to run `yarn build-cache` prior to a new deployment build. T
 Any events that are currently relevant to Beanstalk should reference the codegen for whichever is the latest protocol ABI, and not include v1/v2 etc in the name. Legacy events (that are no longer present on-chain) should reference the codegen for the upgrade in which they were initially deployed, and use the appropriate version number in the method names. Legacy handlers should also be placed in the `legacy` folder.
 
 Underlying logic should be included in a separate file provided in the `utils` folder. The advantage of this is in accommodating a scenario where an event signature gets updated. The replacement event handler can call into the shared util along with the legacy handler.
+
+## License
+
+[MIT](https://github.com/BeanstalkFarms/Beanstalk/blob/master/LICENSE.txt)
