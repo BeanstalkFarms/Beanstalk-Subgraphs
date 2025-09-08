@@ -52,14 +52,16 @@ export const UPGRADEABLE_MAPPING: UpgradeableMapping[] = [
     proxy: BeanstalkArb.BEAN_USDC,
     boredWells: [
       Address.fromString("0xdC29769DB1cAA5cab41835Ef9A42BecDE80de028"),
-      Address.fromString("0xEaDDD2848e962817FD565eA269a7fEDb0588b3F4")
+      Address.fromString("0xEaDDD2848e962817FD565eA269a7fEDb0588b3F4"),
+      Address.fromString("0x43911F82305Be524Ebde2a6b8ddc996eb5E0022C")
     ]
   },
   {
     proxy: BeanstalkArb.BEAN_USDT,
     boredWells: [
       Address.fromString("0xAcFb4644B708043AD6eff1Cc323fDa374Fe6d3cE"),
-      Address.fromString("0xdE8317A2A31a1684e2E4bEcedEc17700718630D8")
+      Address.fromString("0xdE8317A2A31a1684e2E4bEcedEc17700718630D8"),
+      Address.fromString("0x1BEb65b8382cB9C1428244AD5F8f4De2f26AD008")
     ]
   }
 ];
