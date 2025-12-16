@@ -359,7 +359,7 @@ dataSources:
     source:
       address: "0xC218F5a782b0913931DCF502FA2aA959b36Ac9E7"
       abi: BeanstalkPrice
-      startBlock: 262211594 # Reseed Unpause +1
+      startBlock: 411348331 # No peg crosses yet on arbitrum, starting at the block of most recent deployment
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -373,7 +373,7 @@ dataSources:
         - handler: handleBlock
           filter:
             kind: polling
-            every: 40 # 10 seconds on arbitrum
+            every: 240 # 1 minute on arbitrum
       file: ../src/handlers/CrossHandler.ts
 # features:
 #   - grafting
